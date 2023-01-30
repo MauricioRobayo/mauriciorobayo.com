@@ -54,7 +54,7 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
                 {formatDate(new Date(pageOpts.frontMatter.date))}
               </time>
             )}
-            <h1 className="my-1">{pageOpts.title}</h1>
+            <h1 className="mt-1 mb-12">{pageOpts.title}</h1>
             {type === "posts" ? (
               <ol className="list-none pl-0">
                 {posts.map((post) => (
