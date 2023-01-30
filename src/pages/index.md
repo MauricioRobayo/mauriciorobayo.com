@@ -1,4 +1,4 @@
 ---
 type: posts
-title: Blog
+title: Home
 ---

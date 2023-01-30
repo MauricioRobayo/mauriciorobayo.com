@@ -13,39 +13,44 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
   const type = pageOpts.frontMatter?.type ?? "post";
   return (
     <BlogContextProvider value={pageOpts}>
-      <div className="min-h-screen prose lg:prose-lg mx-auto px-6">
-        <header className="flex justify-between flex-col sm:flex-row items-baseline">
-          {pageOpts.route === "/" ? (
-            <h2 className="prose-lg mb-4">Mauricio Robayo</h2>
-          ) : (
-            <Link href="/" className="no-underline">
-              <h2 className="prose-lg mb-4">Mauricio Robayo</h2>
-            </Link>
-          )}
-          <nav>
-            <ul className="flex gap-4 list-none p-0 m-0 mb-4">
-              {navPages.map((page) => {
-                if (!page.frontMatter) {
-                  return null;
-                }
-                const { frontMatter, route, isActive } = page;
-                return (
-                  <li key={route} className="p-0 m-0">
-                    {isActive ? (
-                      <div>{frontMatter.title}</div>
-                    ) : (
-                      <Link href={route}>
-                        <div>{frontMatter.title}</div>
-                      </Link>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-        </header>
-        <article className="py-8 lg:py-12">
-          <h1 className="mb-2">{pageOpts.title}</h1>
+      <div className="min-h-screen prose mx-auto px-6">
+        <article className="py-12">
+          <h1 className="mb-2 hidden sm:block">{pageOpts.title}</h1>
+          <h1 className="mb-2 block sm:hidden">Mauricio Robayo</h1>
+          <header className="flex justify-between flex-col sm:flex-row items-baseline">
+            {pageOpts.route === "/" ? (
+              <h2 className="hidden sm:block prose-lg mt-0 mb-4 text-gray-400">
+                Mauricio Robayo
+              </h2>
+            ) : (
+              <Link href="/" className="no-underline">
+                <h2 className="hidden sm:block prose-lg mt-0 mb-4 text-gray-400">
+                  Mauricio Robayo
+                </h2>
+              </Link>
+            )}
+            <nav>
+              <ul className="flex gap-4 list-none p-0 m-0 mb-4">
+                {navPages.map((page) => {
+                  if (!page.frontMatter) {
+                    return null;
+                  }
+                  const { frontMatter, route, isActive } = page;
+                  return (
+                    <li key={route} className="p-0 m-0">
+                      {isActive ? (
+                        <div className="text-gray-400">{frontMatter.title}</div>
+                      ) : (
+                        <Link href={route}>
+                          <div>{frontMatter.title}</div>
+                        </Link>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </nav>
+          </header>
           {type === "posts" ? (
             <ol className="list-none pl-0">
               {posts.map((post) => (
