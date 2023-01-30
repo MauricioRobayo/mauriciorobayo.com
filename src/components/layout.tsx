@@ -10,6 +10,7 @@ import Link from "next/link";
 export default function Layout({ pageOpts }: NextraThemeLayoutProps) {
   const navPages = getNavPages(pageOpts);
   const posts = getPosts(pageOpts);
+  const type = pageOpts.frontMatter?.type ?? "post";
   return (
     <BlogContextProvider value={pageOpts}>
       <div className="min-h-screen">
@@ -21,8 +22,15 @@ export default function Layout({ pageOpts }: NextraThemeLayoutProps) {
                 return null;
               }
               const { frontMatter, route, isActive } = page;
+              if (isActive) {
+                return (
+                  <li key={route} className="bg-red-300">
+                    <div>{frontMatter.title}</div>
+                  </li>
+                );
+              }
               return (
-                <li key={route} className={isActive ? "bg-red-300" : undefined}>
+                <li key={route}>
                   <Link href={route}>
                     <div>{frontMatter.title}</div>
                   </Link>
@@ -33,13 +41,17 @@ export default function Layout({ pageOpts }: NextraThemeLayoutProps) {
         </nav>
         <article className="prose lg:prose-lg mx-auto py-8 lg:py-12">
           <h1>{pageOpts.title}</h1>
-          <ol>
-            {posts.map((post) => (
-              <li key={post.route}>
-                <Link href={post.route}>{post.frontMatter?.title}</Link>
-              </li>
-            ))}
-          </ol>
+          {type !== "post" ? (
+            <ol>
+              {posts.map((post) => (
+                <li key={post.route}>
+                  <Link href={post.route}>{post.frontMatter?.title}</Link>
+                </li>
+              ))}
+            </ol>
+          ) : (
+            "Post content"
+          )}
         </article>
       </div>
     </BlogContextProvider>
