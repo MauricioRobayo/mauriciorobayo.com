@@ -55,6 +55,18 @@ export default function Layout({ pageOpts }: NextraThemeLayoutProps) {
             "Post content"
           )}
         </article>
+        <hr />
+        <footer className="flex flex-col items-center my-16">
+          <small>
+            <p>
+              The successful warrior is the average man, with laser-like focus.
+            </p>
+          </small>
+          <div className="flex gap-4">
+            <a href="https://github.com/MauricioRobayo">GitHub</a>
+            <a href="https://linkedin.com/mauriciorobayo">LinkedIn</a>
+          </div>
+        </footer>
       </div>
     </BlogContextProvider>
   );
