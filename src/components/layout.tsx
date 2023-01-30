@@ -1,15 +1,11 @@
-import type {
-  MdxFile,
-  NextraThemeLayoutProps,
-  PageMapItem,
-  PageOpts,
-} from "nextra";
+import type { MdxFile, NextraThemeLayoutProps, PageOpts } from "nextra";
 import { BlogContextProvider } from "../context/blog-context";
 import Link from "next/link";
 import { Footer } from "./footer";
+import { getPageByType } from "./utils/get-pages-by-type";
+import { Header } from "./header";
 
 export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
-  const navPages = getNavPages(pageOpts);
   const posts = getPosts(pageOpts);
   const type = pageOpts.frontMatter?.type ?? "post";
   return (
@@ -17,36 +13,7 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
       <div className="bg-gray-50 dark:bg-slate-800 min-h-screen">
         <main className="prose prose-slate dark:prose-invert px-6 mx-auto">
           <article className="py-12">
-            <header className="mb-8">
-              <div className="flex justify-between flex-col sm:flex-row items-baseline">
-                <Link href="/" className="no-underline">
-                  <h2 className="prose-lg my-0 text-gray-400">
-                    Mauricio Robayo
-                  </h2>
-                </Link>
-                <nav>
-                  <ul className="flex gap-4 list-none p-0 m-0 text-gray-400">
-                    {navPages.map((page) => {
-                      if (!page.frontMatter) {
-                        return null;
-                      }
-                      const { frontMatter, route, isActive } = page;
-                      return (
-                        <li key={route} className="p-0 m-0">
-                          {isActive ? (
-                            <div className="">{frontMatter.title}</div>
-                          ) : (
-                            <Link href={route}>
-                              <div>{frontMatter.title}</div>
-                            </Link>
-                          )}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </nav>
-              </div>
-            </header>
+            <Header />
             {type === "post" && pageOpts.frontMatter?.date && (
               <time
                 className="prose-sm text-gray-400"
@@ -77,19 +44,6 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
   );
 }
 
-function getPageByType(pageMap: PageMapItem[], types: string[]): MdxFile[] {
-  const mdxFile: MdxFile[] = [];
-  traverse(pageMap, (page) => {
-    if (page.kind === "MdxPage") {
-      const type: string = page.frontMatter?.type ?? "post";
-      if (types.includes(type)) {
-        mdxFile.push(page);
-      }
-    }
-  });
-  return mdxFile;
-}
-
 function getNavPages(opts: PageOpts): (MdxFile & { isActive: boolean })[] {
   const navPages = getPageByType(opts.pageMap, ["page", "posts"]);
   return navPages.map((navPage) => ({
@@ -100,19 +54,6 @@ function getNavPages(opts: PageOpts): (MdxFile & { isActive: boolean })[] {
 
 function getPosts(opts: PageOpts): MdxFile[] {
   return getPageByType(opts.pageMap, ["post"]).sort(dateSort);
-}
-
-function traverse(
-  pageMap: PageMapItem[],
-  callback: (page: PageMapItem) => void
-) {
-  for (const page of pageMap) {
-    if (page.kind === "Folder") {
-      traverse(page.children, callback);
-    } else {
-      callback(page);
-    }
-  }
 }
 
 function dateSort(a: MdxFile, b: MdxFile) {
