@@ -13,80 +13,78 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
   const type = pageOpts.frontMatter?.type ?? "post";
   return (
     <BlogContextProvider value={pageOpts}>
-      <div className="min-h-screen prose mx-auto px-6">
-        <article className="py-12">
-          <h1 className="mb-2 hidden sm:block">{pageOpts.title}</h1>
-          <h1 className="mb-2 block sm:hidden">Mauricio Robayo</h1>
-          <header className="flex justify-between flex-col sm:flex-row items-baseline">
-            {pageOpts.route === "/" ? (
-              <h2 className="hidden sm:block prose-lg mt-0 mb-4 text-gray-400">
-                Mauricio Robayo
-              </h2>
-            ) : (
-              <Link href="/" className="no-underline">
-                <h2 className="hidden sm:block prose-lg mt-0 mb-4 text-gray-400">
-                  Mauricio Robayo
-                </h2>
-              </Link>
+      <div className="bg-gray-50 min-h-screen">
+        <main className="prose px-6 mx-auto">
+          <article className="py-12">
+            <header className="mb-8">
+              <div className="flex justify-between flex-col sm:flex-row items-baseline">
+                <Link href="/" className="no-underline">
+                  <h2 className="prose-lg my-0 text-gray-400">
+                    Mauricio Robayo
+                  </h2>
+                </Link>
+                <nav>
+                  <ul className="flex gap-4 list-none p-0 m-0">
+                    {navPages.map((page) => {
+                      if (!page.frontMatter) {
+                        return null;
+                      }
+                      const { frontMatter, route, isActive } = page;
+                      return (
+                        <li key={route} className="p-0 m-0">
+                          {isActive ? (
+                            <div className="text-gray-400">
+                              {frontMatter.title}
+                            </div>
+                          ) : (
+                            <Link href={route}>
+                              <div>{frontMatter.title}</div>
+                            </Link>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </nav>
+              </div>
+            </header>
+            {type === "post" && pageOpts.frontMatter?.date && (
+              <time
+                className="prose-sm text-gray-400"
+                dateTime={new Date(pageOpts.frontMatter?.date).toISOString()}
+              >
+                {formatDate(new Date(pageOpts.frontMatter.date))}
+              </time>
             )}
-            <nav>
-              <ul className="flex gap-4 list-none p-0 m-0 mb-4">
-                {navPages.map((page) => {
-                  if (!page.frontMatter) {
-                    return null;
-                  }
-                  const { frontMatter, route, isActive } = page;
-                  return (
-                    <li key={route} className="p-0 m-0">
-                      {isActive ? (
-                        <div className="text-gray-400">{frontMatter.title}</div>
-                      ) : (
-                        <Link href={route}>
-                          <div>{frontMatter.title}</div>
-                        </Link>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-            </nav>
-          </header>
-          {type === "posts" ? (
-            <ol className="list-none pl-0">
-              {posts.map((post) => (
-                <li key={post.route} className="p-0 m-0 prose-lg truncate">
-                  <Link href={post.route} className="no-underline">
-                    {post.frontMatter?.title}
-                  </Link>
-                </li>
-              ))}
-            </ol>
-          ) : (
-            <>
-              {pageOpts.frontMatter?.date && (
-                <time
-                  className="prose-sm text-gray-400"
-                  dateTime={new Date(pageOpts.frontMatter?.date).toISOString()}
-                >
-                  {formatDate(new Date(pageOpts.frontMatter.date))}
-                </time>
-              )}
-              {children}
-            </>
-          )}
-        </article>
-        <hr />
-        <footer className="flex flex-col items-center my-16">
-          <small>
-            <p>
-              The successful warrior is the average man, with laser-like focus.
-            </p>
-          </small>
-          <div className="flex gap-4">
-            <a href="https://github.com/MauricioRobayo">GitHub</a>
-            <a href="https://linkedin.com/mauriciorobayo">LinkedIn</a>
-          </div>
-        </footer>
+            <h1 className="my-1">{pageOpts.title}</h1>
+            {type === "posts" ? (
+              <ol className="list-none pl-0">
+                {posts.map((post) => (
+                  <li key={post.route} className="p-0 m-0 prose-lg truncate">
+                    <Link href={post.route} className="no-underline">
+                      {post.frontMatter?.title}
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              children
+            )}
+          </article>
+          <hr />
+          <footer className="flex flex-col items-center my-16">
+            <small>
+              <p>
+                The successful warrior is the average man, with laser-like
+                focus.
+              </p>
+            </small>
+            <div className="flex gap-4">
+              <a href="https://github.com/MauricioRobayo">GitHub</a>
+              <a href="https://linkedin.com/mauriciorobayo">LinkedIn</a>
+            </div>
+          </footer>
+        </main>
       </div>
     </BlogContextProvider>
   );
