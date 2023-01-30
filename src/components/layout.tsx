@@ -24,7 +24,7 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
                   </h2>
                 </Link>
                 <nav>
-                  <ul className="flex gap-4 list-none p-0 m-0">
+                  <ul className="flex gap-4 list-none p-0 m-0 text-gray-400">
                     {navPages.map((page) => {
                       if (!page.frontMatter) {
                         return null;
@@ -33,9 +33,7 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
                       return (
                         <li key={route} className="p-0 m-0">
                           {isActive ? (
-                            <div className="text-gray-400">
-                              {frontMatter.title}
-                            </div>
+                            <div className="">{frontMatter.title}</div>
                           ) : (
                             <Link href={route}>
                               <div>{frontMatter.title}</div>
@@ -72,7 +70,7 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
             )}
           </article>
           <hr />
-          <footer className="flex flex-col items-center my-16">
+          <footer className="flex flex-col items-center py-16 text-center">
             <small>
               <p>
                 The successful warrior is the average man, with laser-like
@@ -81,6 +79,7 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
             </small>
             <div className="flex gap-4">
               <a href="https://github.com/MauricioRobayo">GitHub</a>
+              {" · "}
               <a href="https://linkedin.com/mauriciorobayo">LinkedIn</a>
             </div>
           </footer>
