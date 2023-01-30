@@ -13,8 +13,8 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
   const type = pageOpts.frontMatter?.type ?? "post";
   return (
     <BlogContextProvider value={pageOpts}>
-      <div className="bg-gray-50 min-h-screen">
-        <main className="prose px-6 mx-auto">
+      <div className="bg-gray-50 dark:bg-slate-800 min-h-screen">
+        <main className="prose dark:prose-invert px-6 mx-auto">
           <article className="py-12">
             <header className="mb-8">
               <div className="flex justify-between flex-col sm:flex-row items-baseline">
