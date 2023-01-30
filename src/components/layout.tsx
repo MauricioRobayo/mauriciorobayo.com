@@ -13,36 +13,38 @@ export default function Layout({ pageOpts }: NextraThemeLayoutProps) {
   const type = pageOpts.frontMatter?.type ?? "post";
   return (
     <BlogContextProvider value={pageOpts}>
-      <div className="min-h-screen">
-        <h2 className="text-base">Mauricio Robayo</h2>
-        <nav>
-          <ul className="flex gap-4">
-            {navPages.map((page) => {
-              if (!page.frontMatter) {
-                return null;
-              }
-              const { frontMatter, route, isActive } = page;
-              if (isActive) {
+      <div className="min-h-screen prose lg:prose-lg mx-auto">
+        <header className="flex justify-between">
+          <h2 className="text-base">Mauricio Robayo</h2>
+          <nav>
+            <ul className="flex gap-4 list-none pl-0">
+              {navPages.map((page) => {
+                if (!page.frontMatter) {
+                  return null;
+                }
+                const { frontMatter, route, isActive } = page;
+                if (isActive) {
+                  return (
+                    <li key={route}>
+                      <div>{frontMatter.title}</div>
+                    </li>
+                  );
+                }
                 return (
-                  <li key={route} className="bg-red-300">
-                    <div>{frontMatter.title}</div>
+                  <li key={route}>
+                    <Link href={route}>
+                      <div>{frontMatter.title}</div>
+                    </Link>
                   </li>
                 );
-              }
-              return (
-                <li key={route}>
-                  <Link href={route}>
-                    <div>{frontMatter.title}</div>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-        <article className="prose lg:prose-lg mx-auto py-8 lg:py-12">
+              })}
+            </ul>
+          </nav>
+        </header>
+        <article className="py-8 lg:py-12">
           <h1>{pageOpts.title}</h1>
           {type !== "post" ? (
-            <ol>
+            <ol className="list-none pl-0">
               {posts.map((post) => (
                 <li key={post.route}>
                   <Link href={post.route}>{post.frontMatter?.title}</Link>
