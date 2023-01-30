@@ -94,7 +94,7 @@ function getNavPages(opts: PageOpts): (MdxFile & { isActive: boolean })[] {
 }
 
 function getPosts(opts: PageOpts): MdxFile[] {
-  return getPageByType(opts.pageMap, ["post"]);
+  return getPageByType(opts.pageMap, ["post"]).sort(dateSort);
 }
 
 function traverse(
@@ -108,4 +108,8 @@ function traverse(
       callback(page);
     }
   }
+}
+
+function dateSort(a: MdxFile, b: MdxFile) {
+  return b.frontMatter?.date?.localeCompare(a.frontMatter?.date);
 }
