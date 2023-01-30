@@ -2,7 +2,6 @@ import type { NextraThemeLayoutProps } from "nextra";
 import Head from "next/head";
 
 export default function Layout({ children, pageOpts }: NextraThemeLayoutProps) {
-  console.log(pageOpts);
   const { title, frontMatter, headings } = pageOpts;
 
   return (
@@ -11,7 +10,7 @@ export default function Layout({ children, pageOpts }: NextraThemeLayoutProps) {
         <title>{title}</title>
         <meta name="og:image" content={frontMatter.image} />
       </Head>
-      <h1>My Theme</h1>
+      <h1 className="text-3xl font-bold underline">My Theme</h1>
       Table of Contents:
       <ul>
         {headings.map((heading) => (
