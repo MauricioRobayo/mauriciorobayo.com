@@ -6,6 +6,7 @@ import type {
 } from "nextra";
 import { BlogContextProvider } from "../context/blog-context";
 import Link from "next/link";
+import { Footer } from "./footer";
 
 export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
   const navPages = getNavPages(pageOpts);
@@ -69,20 +70,7 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
               children
             )}
           </article>
-          <hr />
-          <footer className="flex flex-col items-center py-16 text-center">
-            <small>
-              <p>
-                The successful warrior is the average man, with laser-like
-                focus.
-              </p>
-            </small>
-            <div className="flex gap-4">
-              <a href="https://github.com/MauricioRobayo">GitHub</a>
-              {" · "}
-              <a href="https://linkedin.com/mauriciorobayo">LinkedIn</a>
-            </div>
-          </footer>
+          <Footer />
         </main>
       </div>
     </BlogContextProvider>
