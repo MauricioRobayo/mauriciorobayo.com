@@ -1,24 +1,28 @@
-import type { MdxFile, NextraThemeLayoutProps, PageMapItem } from "nextra";
+import type {
+  MdxFile,
+  NextraThemeLayoutProps,
+  PageMapItem,
+  PageOpts,
+} from "nextra";
 import { BlogContextProvider } from "../context/blog-context";
 import Link from "next/link";
 
 export default function Layout({ pageOpts }: NextraThemeLayoutProps) {
-  const pages = getPages(pageOpts.pageMap);
-  const posts = getPosts(pageOpts.pageMap);
-  console.log(posts);
+  const navPages = getNavPages(pageOpts);
+  const posts = getPosts(pageOpts);
   return (
     <BlogContextProvider value={pageOpts}>
       <div className="min-h-screen">
         <h2 className="text-base">Mauricio Robayo</h2>
         <nav>
           <ul className="flex gap-4">
-            {pages.map((page) => {
+            {navPages.map((page) => {
               if (!page.frontMatter) {
                 return null;
               }
-              const { frontMatter, route } = page;
+              const { frontMatter, route, isActive } = page;
               return (
-                <li key={route}>
+                <li key={route} className={isActive ? "bg-red-300" : undefined}>
                   <Link href={route}>
                     <div>{frontMatter.title}</div>
                   </Link>
@@ -55,12 +59,16 @@ function getPageByType(pageMap: PageMapItem[], types: string[]): MdxFile[] {
   return mdxFile;
 }
 
-function getPages(pageMap: PageMapItem[]): MdxFile[] {
-  return getPageByType(pageMap, ["page"]);
+function getNavPages(opts: PageOpts): (MdxFile & { isActive: boolean })[] {
+  const navPages = getPageByType(opts.pageMap, ["page", "posts"]);
+  return navPages.map((navPage) => ({
+    ...navPage,
+    isActive: opts.route === navPage.route,
+  }));
 }
 
-function getPosts(pageMap: PageMapItem[]): MdxFile[] {
-  return getPageByType(pageMap, ["post"]);
+function getPosts(opts: PageOpts): MdxFile[] {
+  return getPageByType(opts.pageMap, ["post"]);
 }
 
 function traverse(
