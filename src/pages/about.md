@@ -20,9 +20,9 @@ In 2019 I was able to take a year off to fully commit to learning in-depth web d
 You can find me in:
 
 - [GitHub](https://github.com/MauricioRobayo)
-- [npm](https://www.npmjs.com/~mauriciorobayo)
-- [LinkedIn](https://www.linkedin.com/in/mauriciorobayo/)
+- [NPM](https://www.npmjs.com/~mauriciorobayo)
 - [CodeWars](https://www.codewars.com/users/MauricioRobayo)
 - [Exercism](https://exercism.org/profiles/MauricioRobayo)
 - [LeetCode](https://leetcode.com/mauriciorobayo/)
 - [HackerRank](https://www.hackerrank.com/mauriciorobayo/)
+- [LinkedIn](https://www.linkedin.com/in/mauriciorobayo/)
