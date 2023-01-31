@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { PageOpts, MdxFile } from "nextra";
 import { useBlogContext } from "../context/blog-context";
-import { getPageByType } from "./utils/get-pages-by-type";
+import { getPageByType } from "../utils/get-pages-by-type";
 
 export function Header() {
   const pageOpts = useBlogContext();

@@ -2,7 +2,7 @@ import type { MdxFile, NextraThemeLayoutProps, PageOpts } from "nextra";
 import { BlogContextProvider } from "../context/blog-context";
 import Link from "next/link";
 import { Footer } from "./footer";
-import { getPageByType } from "./utils/get-pages-by-type";
+import { getPageByType } from "../utils/get-pages-by-type";
 import { Header } from "./header";
 
 export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
