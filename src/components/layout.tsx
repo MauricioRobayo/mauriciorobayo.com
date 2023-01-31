@@ -3,17 +3,18 @@ import { BlogContextProvider } from "../context/blog-context";
 import Link from "next/link";
 import { Footer } from "./footer";
 import { getPageByType } from "../utils/get-pages-by-type";
-import { Header } from "./header";
+import { Header, NavPage } from "./header";
 
 export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
   const posts = getPosts(pageOpts);
   const type = pageOpts.frontMatter?.type ?? "post";
+  const navPages = getNavPages(pageOpts);
   return (
     <BlogContextProvider value={pageOpts}>
       <div className="bg-slate-50 dark:bg-slate-800 min-h-screen">
         <main className="prose prose-slate dark:prose-invert px-6 mx-auto">
           <article className="py-12">
-            <Header />
+            <Header navPages={navPages} />
             {type === "post" && pageOpts.frontMatter?.date && (
               <time
                 className="prose-sm text-gray-400"
@@ -56,12 +57,15 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
   );
 }
 
-function getNavPages(opts: PageOpts): (MdxFile & { isActive: boolean })[] {
+function getNavPages(opts: PageOpts): NavPage[] {
   const navPages = getPageByType(opts.pageMap, ["page", "posts"]);
-  return navPages.map((navPage) => ({
-    ...navPage,
-    isActive: opts.route === navPage.route,
-  }));
+  return navPages.map(
+    (navPage): NavPage => ({
+      title: navPage.frontMatter?.title ?? "",
+      route: navPage.route,
+      isActive: opts.route === navPage.route,
+    })
+  );
 }
 
 function getPosts(opts: PageOpts): MdxFile[] {

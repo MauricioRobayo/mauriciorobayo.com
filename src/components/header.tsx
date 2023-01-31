@@ -1,11 +1,16 @@
 import Link from "next/link";
-import { PageOpts, MdxFile } from "nextra";
-import { useBlogContext } from "../context/blog-context";
+import { MdxFile, PageOpts } from "nextra";
 import { getPageByType } from "../utils/get-pages-by-type";
 
-export function Header() {
-  const pageOpts = useBlogContext();
-  const navPages = getNavPages(pageOpts);
+export interface NavPage {
+  title: string;
+  route: string;
+  isActive: boolean;
+}
+interface HeaderProps {
+  navPages: NavPage[];
+}
+export function Header({ navPages }: HeaderProps) {
   return (
     <header className="mb-8">
       <div className="flex justify-between flex-col sm:flex-row items-baseline">
@@ -15,17 +20,14 @@ export function Header() {
         <nav>
           <ul className="flex gap-4 list-none p-0 m-0 text-gray-400">
             {navPages.map((page) => {
-              if (!page.frontMatter) {
-                return null;
-              }
-              const { frontMatter, route, isActive } = page;
+              const { title, route, isActive } = page;
               return (
                 <li key={route} className="p-0 m-0">
                   {isActive ? (
-                    <div className="">{frontMatter.title}</div>
+                    <div className="">{title}</div>
                   ) : (
                     <Link href={route}>
-                      <div>{frontMatter.title}</div>
+                      <div>{title}</div>
                     </Link>
                   )}
                 </li>
