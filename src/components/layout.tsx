@@ -1,14 +1,36 @@
+import Link from "next/link";
 import type { MdxFile, NextraThemeLayoutProps, PageOpts } from "nextra";
 import { BlogContextProvider } from "../context/blog-context";
-import Link from "next/link";
-import { Footer } from "./footer";
 import { getPageByType } from "../utils/get-pages-by-type";
+import { PostDate } from "./post-date";
+import { Footer } from "./footer";
 import { Header, NavPage } from "./header";
 
 export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
   const posts = getPosts(pageOpts);
   const type = pageOpts.frontMatter?.type ?? "post";
   const navPages = getNavPages(pageOpts);
+  const postsList = (
+    <ol className="list-none pl-0">
+      {posts.map((post) => {
+        const dateString: string = post.frontMatter?.date ?? "";
+        return (
+          <li
+            key={post.route}
+            className="p-0 m-0 mb-2 flex flex-col-reverse sm:flex-row sm:gap-2 sm:items-baseline"
+          >
+            <Link href={post.route} className="no-underline prose-lg truncate">
+              {post.frontMatter?.title}
+            </Link>
+            <PostDate
+              className="prose-sm text-gray-400 flex-shrink-0"
+              date={new Date(dateString)}
+            />
+          </li>
+        );
+      })}
+    </ol>
+  );
   return (
     <BlogContextProvider value={pageOpts}>
       <div className="bg-slate-50 dark:bg-slate-800 min-h-screen">
@@ -20,39 +42,13 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
               </Link>
             </Header>
             {type === "post" && pageOpts.frontMatter?.date && (
-              <time
+              <PostDate
                 className="prose-sm text-gray-400"
-                dateTime={new Date(pageOpts.frontMatter?.date).toISOString()}
-              >
-                {formatDate(new Date(pageOpts.frontMatter.date))}
-              </time>
+                date={new Date(pageOpts.frontMatter.date)}
+              />
             )}
             <h1 className="mt-1 mb-12">{pageOpts.title}</h1>
-            {type === "posts" ? (
-              <ol className="list-none pl-0">
-                {posts.map((post) => (
-                  <li
-                    key={post.route}
-                    className="p-0 m-0 mb-2 flex flex-col-reverse sm:flex-row sm:gap-2 sm:items-baseline"
-                  >
-                    <Link
-                      href={post.route}
-                      className="no-underline prose-lg truncate"
-                    >
-                      {post.frontMatter?.title}
-                    </Link>
-                    <time
-                      className="prose-sm text-gray-400 flex-shrink-0"
-                      dateTime={new Date(post.frontMatter?.date).toISOString()}
-                    >
-                      {formatDate(new Date(post.frontMatter?.date))}
-                    </time>
-                  </li>
-                ))}
-              </ol>
-            ) : (
-              children
-            )}
+            {type === "posts" ? postsList : children}
           </article>
           <Footer />
         </main>
@@ -78,9 +74,4 @@ function getPosts(opts: PageOpts): MdxFile[] {
 
 function dateSort(a: MdxFile, b: MdxFile) {
   return b.frontMatter?.date?.localeCompare(a.frontMatter?.date);
-}
-
-const dateFormatter = new Intl.DateTimeFormat("en-US", { dateStyle: "medium" });
-function formatDate(date: Date | number) {
-  return dateFormatter.format(date);
 }
