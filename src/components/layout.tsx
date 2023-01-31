@@ -7,9 +7,9 @@ import type {
   PageOpts,
 } from "nextra";
 import { BlogContextProvider } from "../context/blog-context";
+import { formatDate, PostDate } from "./post-date";
 import { Footer } from "./footer";
 import { Header, NavPage } from "./header";
-import { formatDate } from "./post-date";
 
 export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
   const posts = getPosts(pageOpts);
