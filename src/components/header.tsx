@@ -39,11 +39,3 @@ export function Header({ navPages, children }: HeaderProps) {
     </header>
   );
 }
-
-function getNavPages(opts: PageOpts): (MdxFile & { isActive: boolean })[] {
-  const navPages = getPageByType(opts.pageMap, ["page", "posts"]);
-  return navPages.map((navPage) => ({
-    ...navPage,
-    isActive: opts.route === navPage.route,
-  }));
-}
