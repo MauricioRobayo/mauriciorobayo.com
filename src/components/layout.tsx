@@ -69,8 +69,11 @@ function getNavPages(pageOpts: PageOpts): NavPage[] {
   const metaPage = pageOpts.pageMap.find(
     (page): page is MetaJsonFile => page.kind === "Meta"
   );
+  console.log("route ========== ", pageOpts.route);
   if (metaPage) {
-    return getNavPagesByMeta(pageOpts, metaPage);
+    const navPages = getNavPagesByMeta(pageOpts, metaPage);
+    console.assert(navPages.length === 3, navPages);
+    return navPages;
   }
 
   const navPages = getPageByType(pageOpts.pageMap, ["page", "posts"]);
