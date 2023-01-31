@@ -2,7 +2,7 @@ export function Footer() {
   const footerLinks = [
     { url: "https://github.com/MauricioRobayo", name: "GitHub" },
     {
-      url: "htts://linkedin.com/mauriciorobayo",
+      url: "https://linkedin.com/in/mauriciorobayo",
       name: "LinkedIn",
     },
   ];
@@ -17,7 +17,9 @@ export function Footer() {
         </small>
         <div className="flex gap-4">
           {footerLinks.map((link) => (
-            <a key={link.url}>{link.name}</a>
+            <a key={link.url} href={link.url}>
+              {link.name}
+            </a>
           ))}
         </div>
       </footer>
