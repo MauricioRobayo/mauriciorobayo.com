@@ -14,7 +14,11 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
       <div className="bg-slate-50 dark:bg-slate-800 min-h-screen">
         <main className="prose prose-slate dark:prose-invert px-6 mx-auto">
           <article className="py-12">
-            <Header navPages={navPages} />
+            <Header navPages={navPages}>
+              <Link href="/" className="no-underline">
+                <h2 className="prose-lg my-0 text-gray-400">Mauricio Robayo</h2>
+              </Link>
+            </Header>
             {type === "post" && pageOpts.frontMatter?.date && (
               <time
                 className="prose-sm text-gray-400"

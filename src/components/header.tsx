@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { MdxFile, PageOpts } from "nextra";
+import { ReactNode } from "react";
 import { getPageByType } from "../utils/get-pages-by-type";
 
 export interface NavPage {
@@ -9,14 +10,13 @@ export interface NavPage {
 }
 interface HeaderProps {
   navPages: NavPage[];
+  children: ReactNode;
 }
-export function Header({ navPages }: HeaderProps) {
+export function Header({ navPages, children }: HeaderProps) {
   return (
     <header className="mb-8">
       <div className="flex justify-between flex-col sm:flex-row items-baseline">
-        <Link href="/" className="no-underline">
-          <h2 className="prose-lg my-0 text-gray-400">Mauricio Robayo</h2>
-        </Link>
+        {children}
         <nav>
           <ul className="flex gap-4 list-none p-0 m-0 text-gray-400">
             {navPages.map((page) => {
