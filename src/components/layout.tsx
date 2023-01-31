@@ -7,7 +7,7 @@ import type {
   PageOpts,
 } from "nextra";
 import { BlogContextProvider } from "../context/blog-context";
-import { formatDate, PostDate } from "./post-date";
+import { PostDate } from "./post-date";
 import { Footer } from "./footer";
 import { Header, NavPage } from "./header";
 
@@ -30,12 +30,10 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
             <Link href={post.route} className="no-underline prose-lg truncate">
               {post.frontMatter?.title}
             </Link>
-            <time
+            <PostDate
               className="prose-sm text-gray-400 flex-shrink-0"
-              dateTime={new Date(dateString).toISOString()}
-            >
-              {formatDate(new Date(dateString))}
-            </time>
+              date={new Date(dateString)}
+            />
           </li>
         );
       })}
@@ -52,12 +50,10 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
               </Link>
             </Header>
             {type === "post" && pageOpts.frontMatter?.date && (
-              <time
+              <PostDate
                 className="prose-sm text-gray-400"
-                dateTime={new Date(pageOpts.frontMatter.date).toISOString()}
-              >
-                {formatDate(new Date(pageOpts.frontMatter.date))}
-              </time>
+                date={new Date(pageOpts.frontMatter.date)}
+              />
             )}
             <h1 className="mt-1 mb-12">{pageOpts.title}</h1>
             {type === "posts" ? postsList : children}
