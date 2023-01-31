@@ -10,7 +10,7 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
   const type = pageOpts.frontMatter?.type ?? "post";
   return (
     <BlogContextProvider value={pageOpts}>
-      <div className="bg-gray-50 dark:bg-slate-800 min-h-screen">
+      <div className="bg-slate-50 dark:bg-slate-800 min-h-screen">
         <main className="prose prose-slate dark:prose-invert px-6 mx-auto">
           <article className="py-12">
             <Header />
@@ -26,10 +26,22 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
             {type === "posts" ? (
               <ol className="list-none pl-0">
                 {posts.map((post) => (
-                  <li key={post.route} className="p-0 m-0 prose-lg truncate">
-                    <Link href={post.route} className="no-underline">
+                  <li
+                    key={post.route}
+                    className="p-0 m-0 mb-2 flex flex-col-reverse sm:flex-row sm:gap-2 sm:items-baseline"
+                  >
+                    <Link
+                      href={post.route}
+                      className="no-underline prose-lg truncate"
+                    >
                       {post.frontMatter?.title}
                     </Link>
+                    <time
+                      className="prose-sm text-gray-400 flex-shrink-0"
+                      dateTime={new Date(post.frontMatter?.date).toISOString()}
+                    >
+                      {formatDate(new Date(post.frontMatter?.date))}
+                    </time>
                   </li>
                 ))}
               </ol>
