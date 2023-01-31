@@ -16,3 +16,13 @@ But it was not enough. Evenings and weekends were not enough.
 I love figuring things out. I love ploughing into complex mechanisms to unveil their underlying structure, simplify it, and push it further. And wanted to do it full-time.
 
 In 2019 I was able to take a year off to fully commit to learning in-depth web development and focused on mastering JavaScript. I plunged deep into TypeScript, React, and Nodejs, and have skyrocketed as a professional web developer ever since.
+
+You can find me in:
+
+- [GitHub](https://github.com/MauricioRobayo)
+- [npm](https://www.npmjs.com/~mauriciorobayo)
+- [LinkedIn](https://www.linkedin.com/in/mauriciorobayo/)
+- [CodeWars](https://www.codewars.com/users/MauricioRobayo)
+- [Exercism](https://exercism.org/profiles/MauricioRobayo)
+- [LeetCode](https://leetcode.com/mauriciorobayo/)
+- [HackerRank](https://www.hackerrank.com/mauriciorobayo/)
