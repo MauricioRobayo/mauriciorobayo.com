@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { MdxFile, PageOpts } from "nextra";
 import { ReactNode } from "react";
-import { getPageByType } from "../utils/get-pages-by-type";
 
 export interface NavPage {
   title: string;
