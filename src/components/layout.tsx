@@ -13,7 +13,10 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
   const postsList = (
     <ol className="list-none pl-0">
       {posts.map((post) => {
-        const dateString: string = post.frontMatter?.date ?? "";
+        const dateString: string | undefined = post.frontMatter?.date;
+        if (!dateString) {
+          throw new Error(`Post ${post.name} is missing the date field.`);
+        }
         return (
           <li
             key={post.route}
