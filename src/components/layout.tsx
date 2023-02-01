@@ -69,14 +69,8 @@ function getNavPages(pageOpts: PageOpts): NavPage[] {
   const metaPage = pageOpts.pageMap.find(
     (page): page is MetaJsonFile => page.kind === "Meta"
   );
-  console.log("route ========== ", pageOpts.route);
   if (metaPage) {
     const navPages = getNavPagesByMeta(pageOpts, metaPage);
-    console.assert(
-      navPages.length === 3,
-      JSON.stringify(navPages, null, 2),
-      JSON.stringify(metaPage, null, 2)
-    );
     return navPages;
   }
 
