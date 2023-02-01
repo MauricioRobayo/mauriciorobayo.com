@@ -3,9 +3,9 @@ type: page
 title: About
 ---
 
-Around 2008 I discovered programming while working with Microsoft Excel. I wrote my first lines of code using VBA, and that was it. I was hooked. Writing VBA scripts to do… whatever, became my time-consuming hobby.
+Around 2008 I discovered programming while working with Microsoft Excel. I wrote my first lines of code using VBA and that was it, I was hooked. Writing VBA scripts to do… whatever, became my time-consuming hobby.
 
-I bought books, watched videos, jumped into Microsoft Access and was fascinated by databases, and was struggling to keep up with my regular life because all the time I wanted to explore more.
+I bought books, watched videos, jumped into Microsoft Access and became enchanted by databases, and was struggling to keep up with my regular life because all the time I wanted to explore and learn more.
 
 By 2012 I created a blog about Excel, and I began to tinker around with HTML, CSS, and JavaScript. I bought more books, watched more videos, and got an angry wife competing for my time in the evenings and during weekends.
 
