@@ -9,7 +9,7 @@ title: Projects
 - **[Pyphoy](https://www.pyphoy.com)**: Top reference site for vehicle restriction in Colombia, with over a million users per month.
 - **[CodeTyper](https://codetyper.io)**: Practice your touch typing skills with any snippet of code stored as a gist.
 
-## Legacy
+## Stale
 
 - **[React Obfuscate Email](https://mauriciorobayo.github.io/react-obfuscate-email/)**: React component to obfuscate email links.
 - **[SVG Emojis](svg-emojis.netlify.app)**: Choose your flavor of consistent cross-platform SVG emojis.
