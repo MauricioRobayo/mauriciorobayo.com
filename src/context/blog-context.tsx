@@ -1,5 +1,5 @@
-import { Page, PageOpts } from "nextra";
-import { createContext, useContext, ReactNode } from "react";
+import { PageOpts } from "nextra";
+import { createContext, ReactNode, useContext } from "react";
 
 interface ThemeConfig {
   siteName: string;
