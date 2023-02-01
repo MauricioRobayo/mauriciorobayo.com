@@ -22,7 +22,7 @@ export default function Layout({
   const navPages = getNavPages(pageOpts);
   const type = pageOpts.frontMatter?.type ?? "post";
   const postsList = (
-    <ol className="list-none pl-0">
+    <ol className="list-none pl-0 flex flex-col gap-2">
       {posts.map((post) => {
         const dateString: string | undefined = post.frontMatter?.date;
         if (!dateString) {
@@ -33,7 +33,10 @@ export default function Layout({
             key={post.route}
             className="p-0 m-0 mb-2 flex flex-col-reverse sm:flex-row sm:gap-2 sm:items-baseline"
           >
-            <Link href={post.route} className="no-underline prose-lg truncate">
+            <Link
+              href={post.route}
+              className="no-underline prose-lg truncate leading-tight font-normal"
+            >
               {post.frontMatter?.title}
             </Link>
             <PostDate
