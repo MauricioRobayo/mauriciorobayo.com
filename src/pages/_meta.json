@@ -1,5 +1,6 @@
 {
+  "index": "Home",
   "blog": "Blog",
   "projects": "Projects",
-  "index": "About"
+  "about": "About"
 }

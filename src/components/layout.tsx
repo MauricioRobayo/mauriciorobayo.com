@@ -43,7 +43,7 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
   return (
     <BlogContextProvider value={pageOpts}>
       <div className="bg-gray-50 dark:bg-slate-800 min-h-screen">
-        <main className="prose prose-slate dark:prose-invert px-6 mx-auto">
+        <main className="prose prose-slate dark:prose-invert px-6 m-auto">
           <article className="py-12">
             <Header navPages={navPages}>
               <Link href="/" className="no-underline">
@@ -56,7 +56,9 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
                 date={new Date(pageOpts.frontMatter.date)}
               />
             )}
-            <h1 className="mt-1 mb-12">{pageOpts.title}</h1>
+            {pageOpts.route === "/" ? null : (
+              <h1 className="mt-1 mb-12">{pageOpts.title}</h1>
+            )}
             {type === "posts" ? postsList : children}
           </article>
           <Footer />
@@ -71,8 +73,7 @@ function getNavPages(pageOpts: PageOpts): NavPage[] {
     (page): page is MetaJsonFile => page.kind === "Meta"
   );
   if (metaPage) {
-    const navPages = getNavPagesByMeta(pageOpts, metaPage);
-    return navPages;
+    return getNavPagesByMeta(pageOpts, metaPage);
   }
 
   const navPages = getPageByType(pageOpts.pageMap, ["page", "posts"]);
@@ -90,7 +91,6 @@ function getNavPagesByMeta(
   metaPage: MetaJsonFile
 ): NavPage[] {
   const result: NavPage[] = [];
-  console.log(metaPage, pageOpts.pageMap);
   for (const [name, meta] of Object.entries(metaPage.data)) {
     const navPage = pageOpts.pageMap.find(
       (page): page is MdxFile | Folder => isNavPage(page) && page.name === name
@@ -127,16 +127,16 @@ export function getPageByType(
   pageMap: PageMapItem[],
   types: string[]
 ): MdxFile[] {
-  const mdxFile: MdxFile[] = [];
+  const mdxFiles: MdxFile[] = [];
   traverse(pageMap, (page) => {
     if (page.kind === "MdxPage") {
       const type: string = page.frontMatter?.type ?? "post";
       if (types.includes(type)) {
-        mdxFile.push(page);
+        mdxFiles.push(page);
       }
     }
   });
-  return mdxFile;
+  return mdxFiles;
 }
 
 export function traverse(
