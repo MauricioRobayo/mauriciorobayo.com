@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type {
+  Folder,
   MdxFile,
   MetaJsonFile,
   NextraThemeLayoutProps,
@@ -89,22 +90,29 @@ function getNavPagesByMeta(
   metaPage: MetaJsonFile
 ): NavPage[] {
   const result: NavPage[] = [];
-  const navPages = getPageByType(pageOpts.pageMap, ["page", "posts"]);
+  console.log(metaPage, pageOpts.pageMap);
   for (const [name, meta] of Object.entries(metaPage.data)) {
-    const navPage = navPages.find((p) => p.name === name);
+    const navPage = pageOpts.pageMap.find(
+      (page): page is MdxFile | Folder => isNavPage(page) && page.name === name
+    );
     if (navPage) {
-      const title: string =
-        typeof meta === "string"
-          ? meta
-          : meta.title ?? navPage.frontMatter?.title ?? navPage.name;
+      const metaTitle: string | undefined =
+        typeof meta === "string" ? meta : meta.title;
+      const pageTitle: string =
+        (navPage.kind === "MdxPage" && navPage.frontMatter?.title) ??
+        navPage.name;
       result.push({
-        title,
+        title: metaTitle ?? pageTitle,
         route: navPage.route,
         isActive: pageOpts.route === navPage.route,
       });
     }
   }
   return result;
+}
+
+function isNavPage(page: PageMapItem): page is MdxFile | Folder {
+  return ["MdxPage", "Folder"].includes(page.kind);
 }
 
 function getPosts(opts: PageOpts): MdxFile[] {
