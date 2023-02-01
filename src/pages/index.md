@@ -7,7 +7,7 @@ Around 2008 I discovered programming while working with Microsoft Excel. I wrote
 
 I bought books, watched videos, jumped into Microsoft Access and became enchanted by databases, and was struggling to keep up with my regular life because all the time I wanted to explore and learn more.
 
-By 2012 I created a blog about Excel, and I began to tinker around with HTML, CSS, and JavaScript. I bought more books, watched more videos, and got an angry wife competing for my time in the evenings and during weekends.
+By 2012 I created a blog about Excel, and I began to tinker around with HTML, CSS, and JavaScript. I bought more books, watched more videos, and spent my evenings and weekends playing around with programming and the web.
 
 Then I learned WordPress and PHP and built websites for everyone around me as a side gig. I wrote custom templates and silly plugins. Built some toy projects using CodeIgniter, just for fun, did online CS courses, learned Python, and played around with Ruby and Ruby on Rails.
 
