@@ -5,15 +5,15 @@ interface ThemeConfig {
   siteName: string;
 }
 
-interface BlogContext {
+interface BlogContextValue {
   pageOpts: PageOpts;
   themeConfig: ThemeConfig;
 }
 
-const BlogContext = createContext<BlogContext | null>(null);
+const BlogContext = createContext<BlogContextValue | null>(null);
 
 interface BlogContextProviderProps {
-  value: BlogContext;
+  value: BlogContextValue;
   children: ReactNode;
 }
 export function BlogContextProvider({
