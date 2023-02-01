@@ -1,10 +1,19 @@
-import { PageOpts } from "nextra";
+import { Page, PageOpts } from "nextra";
 import { createContext, useContext, ReactNode } from "react";
 
-const BlogContext = createContext<PageOpts | null>(null);
+interface ThemeConfig {
+  siteName: string;
+}
+
+interface BlogContext {
+  pageOpts: PageOpts;
+  themeConfig: ThemeConfig;
+}
+
+const BlogContext = createContext<BlogContext | null>(null);
 
 interface BlogContextProviderProps {
-  value: PageOpts;
+  value: BlogContext;
   children: ReactNode;
 }
 export function BlogContextProvider({

@@ -7,12 +7,17 @@ import type {
   PageMapItem,
   PageOpts,
 } from "nextra";
-import { BlogContextProvider } from "../context/blog-context";
-import { PostDate } from "./post-date";
-import { Footer } from "./footer";
-import { Header, NavPage } from "./header";
+import { BlogContextProvider } from "@/context/blog-context";
+import { PostDate } from "@/components/post-date";
+import { Footer } from "@/components/footer";
+import { Header, NavPage } from "@/components/header";
+import { Head } from "@/components/head";
 
-export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
+export default function Layout({
+  pageOpts,
+  themeConfig,
+  children,
+}: NextraThemeLayoutProps) {
   const posts = getPosts(pageOpts);
   const navPages = getNavPages(pageOpts);
   const type = pageOpts.frontMatter?.type ?? "post";
@@ -41,7 +46,8 @@ export default function Layout({ pageOpts, children }: NextraThemeLayoutProps) {
     </ol>
   );
   return (
-    <BlogContextProvider value={pageOpts}>
+    <BlogContextProvider value={{ pageOpts, themeConfig }}>
+      <Head />
       <div className="bg-gray-50 dark:bg-slate-800 min-h-screen">
         <main className="prose prose-slate dark:prose-invert px-6 m-auto">
           <article className="py-12">
