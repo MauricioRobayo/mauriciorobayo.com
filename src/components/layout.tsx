@@ -22,6 +22,7 @@ export default function Layout({
   const posts = getPosts(pageOpts);
   const navPages = getNavPages(pageOpts);
   const type = pageOpts.frontMatter?.type ?? "post";
+  const isPost = type === "post";
   const isHome = pageOpts.route === "/";
   const postsList = (
     <ol className="list-none pl-0 flex flex-col gap-2">
@@ -61,14 +62,16 @@ export default function Layout({
                 <h2 className="prose-lg my-0 text-gray-400">Mauricio Robayo</h2>
               </Link>
             </Header>
-            {type === "post" && pageOpts.frontMatter?.date && (
+            {isPost && pageOpts.frontMatter?.date && (
               <PostDate
                 className="prose-sm text-gray-400"
                 date={new Date(pageOpts.frontMatter.date)}
               />
             )}
             {isHome ? null : (
-              <h1 className="hidden sm:block mt-1 mb-12ß">{pageOpts.title}</h1>
+              <h1 className={`${isPost ? "" : "hidden sm:block"} mt-1 mb-12`}>
+                {pageOpts.title}
+              </h1>
             )}
             {type === "posts" ? (
               postsList
