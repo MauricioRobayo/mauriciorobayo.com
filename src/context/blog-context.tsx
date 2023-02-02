@@ -1,8 +1,9 @@
 import { PageOpts } from "nextra";
 import { createContext, ReactNode, useContext } from "react";
 
-interface ThemeConfig {
+export interface ThemeConfig {
   siteName: string;
+  tagLine: string;
 }
 
 interface BlogContextValue {
