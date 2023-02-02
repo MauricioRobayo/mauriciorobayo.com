@@ -14,7 +14,6 @@ export function Footer({ links, children }: FooterProps) {
   ];
   return (
     <>
-      <hr />
       <footer className="flex flex-col items-center py-16 text-center">
         {children}
         <div className="flex gap-4">

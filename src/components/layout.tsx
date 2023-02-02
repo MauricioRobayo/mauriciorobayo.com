@@ -74,6 +74,7 @@ export default function Layout({
               <div className={isHome ? "my-32" : ""}>{children}</div>
             )}
           </article>
+          {isHome ? null : <hr />}
           <Footer links={themeConfig.footerLinks}>
             {isHome ? null : (
               <small>
