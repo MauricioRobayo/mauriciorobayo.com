@@ -78,9 +78,13 @@ export function useQuotes(): State {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
+    const abortController = new AbortController();
+
     async function fetchQuotes() {
       dispatch({ type: "loading" });
-      const response = await fetch(quotesFileUrl);
+      const response = await fetch(quotesFileUrl, {
+        signal: abortController.signal,
+      });
       if (!response.ok) {
         dispatch({ type: "error", payload: response.status });
         return;
@@ -91,6 +95,10 @@ export function useQuotes(): State {
     }
 
     fetchQuotes();
+
+    return () => {
+      abortController.abort();
+    };
   }, []);
 
   return state;
