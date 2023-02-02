@@ -12,6 +12,7 @@ import { PostDate } from "@/components/post-date";
 import { Footer } from "@/components/footer";
 import { Header, NavPage } from "@/components/header";
 import { Head } from "@/components/head";
+import Balancer from "react-wrap-balancer";
 
 export default function Layout({
   pageOpts,
@@ -21,12 +22,14 @@ export default function Layout({
   const posts = getPosts(pageOpts);
   const navPages = getNavPages(pageOpts);
   const type = pageOpts.frontMatter?.type ?? "post";
+  const isHome = pageOpts.route === "/";
   const postsList = (
     <ol className="list-none pl-0 flex flex-col gap-2">
       {posts.map((post) => {
         const dateString: string | undefined = post.frontMatter?.date;
         if (!dateString) {
-          throw new Error(`Post ${post.name} is missing the date field.`);
+          return null;
+          // throw new Error(`Post ${post.name} is missing the date field.`);
         }
         return (
           <li
@@ -53,7 +56,7 @@ export default function Layout({
       <Head />
       <div className="bg-gray-50 dark:bg-slate-800 min-h-screen">
         <main className="prose prose-slate dark:prose-invert px-6 m-auto">
-          <article className="py-12">
+          <article className="pt-12">
             <Header navPages={navPages}>
               <Link href="/" className="no-underline">
                 <h2 className="prose-lg my-0 text-gray-400">Mauricio Robayo</h2>
@@ -65,12 +68,22 @@ export default function Layout({
                 date={new Date(pageOpts.frontMatter.date)}
               />
             )}
-            {pageOpts.route === "/" ? null : (
-              <h1 className="mt-1 mb-12">{pageOpts.title}</h1>
+            {isHome ? null : <h1 className="mt-1 mb-12">{pageOpts.title}</h1>}
+            {type === "posts" ? (
+              postsList
+            ) : (
+              <div className={isHome ? "my-32" : ""}>{children}</div>
             )}
-            {type === "posts" ? postsList : children}
           </article>
-          <Footer />
+          <Footer links={themeConfig.footerLinks}>
+            {isHome ? null : (
+              <small>
+                <p>
+                  <Balancer>{themeConfig.tagLine}</Balancer>
+                </p>
+              </small>
+            )}
+          </Footer>
         </main>
       </div>
     </BlogContextProvider>

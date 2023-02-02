@@ -1,4 +1,10 @@
-export function Footer() {
+import { ReactNode } from "react";
+
+interface FooterProps {
+  links?: { url: string; name: string }[];
+  children: ReactNode;
+}
+export function Footer({ links, children }: FooterProps) {
   const footerLinks = [
     { url: "https://github.com/MauricioRobayo", name: "GitHub" },
     {
@@ -10,11 +16,7 @@ export function Footer() {
     <>
       <hr />
       <footer className="flex flex-col items-center py-16 text-center">
-        <small>
-          <p>
-            The successful warrior is the average man, with laser-like focus.
-          </p>
-        </small>
+        {children}
         <div className="flex gap-4">
           {footerLinks.map((link) => (
             <a key={link.url} href={link.url}>

@@ -1,22 +1,47 @@
 import { useState } from "react";
+import { Quote, useQuotes } from "@/hooks/use-quote";
+import { Loader } from "@/components/loader";
+import { RefreshIcon } from "@/components/refresh-icon";
+import { Blockquote } from "./blockquote";
 
-const quotesFileUrl =
-  "https://raw.githubusercontent.com/MauricioRobayo/quotes-to-live-by/main/quotes-to-live-by.json";
+const defaultQuote: Quote = {
+  quote:
+    "Mastery is not a function of genius or talent. It is a function of time and intense focus applied to a particular field of knowledge.",
+  author: "Robert Greene",
+};
 
 export function Quote() {
-  const [selectedQuoteIndex, setSelectedQuoteIndex] = useState(0);
-  const quotes = [
-    "hello, world!",
-    "All I wanna do is go the distance. Hear that ring bell and I'm still standing",
-  ];
-  const changeQuote = () => {
-    setSelectedQuoteIndex(
-      (selectedQuoteIndex) => (selectedQuoteIndex + 1) % quotes.length
+  const { status, quotes } = useQuotes();
+  const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+
+  if (status === "idle" || status === "loading") {
+    return <Loader />;
+  }
+
+  const refreshQuote = () => {
+    if (!quotes) {
+      return;
+    }
+    setCurrentQuoteIndex(
+      (currentQuoteIndex) => (currentQuoteIndex + 1) % quotes.length
     );
   };
+
   return (
-    <div className="text-center py-16 text-gray-400" onClick={changeQuote}>
-      {quotes[selectedQuoteIndex]}
+    <div className="text-center py-8 m-auto grid place-items-center">
+      {status === "error" ? (
+        <Blockquote quote={defaultQuote.quote} author={defaultQuote.author} />
+      ) : (
+        <>
+          <Blockquote
+            quote={quotes[currentQuoteIndex].quote}
+            author={quotes[currentQuoteIndex].author}
+          />
+          <button type="button" onClick={refreshQuote}>
+            <RefreshIcon />
+          </button>
+        </>
+      )}
     </div>
   );
 }

@@ -1,9 +1,15 @@
 import { PageOpts } from "nextra";
 import { createContext, ReactNode, useContext } from "react";
 
+interface Link {
+  url: string;
+  name: string;
+}
+
 export interface ThemeConfig {
   siteName: string;
   tagLine: string;
+  footerLinks: Link[];
 }
 
 interface BlogContextValue {
