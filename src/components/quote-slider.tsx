@@ -3,6 +3,7 @@ import { Quote, useQuotes } from "@/hooks/use-quote";
 import { Loader } from "@/components/loader";
 import { RefreshIcon } from "@/components/refresh-icon";
 import { Blockquote } from "@/components/blockquote";
+import { NextIcon } from "./next-icon";
 
 const defaultQuote: Quote = {
   quote:
@@ -51,23 +52,7 @@ export function QuoteSlider() {
         onClick={refreshQuote}
       >
         <RefreshIcon className="hidden sm:block" />
-        <div className="text-4xl sm:hidden bg-gray-200 dark:bg-slate-700 w-12 h-12 rounded-full grid place-items-center">
-          <svg
-            width="1rem"
-            height="1rem"
-            version="1.1"
-            id="XMLID_287_"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 24"
-            className="fill-current bg-opacity-20"
-          >
-            <g id="next">
-              <g>
-                <polygon points="6.8,23.7 5.4,22.3 15.7,12 5.4,1.7 6.8,0.3 18.5,12 		" />
-              </g>
-            </g>
-          </svg>
-        </div>
+        <NextIcon className="sm:hidden" />
       </button>
     </div>
   );
