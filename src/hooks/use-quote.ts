@@ -64,8 +64,9 @@ const reducer = (prevState: State, action: Action): State => {
         error: undefined,
       };
     case "idle":
+    case "loading":
       return {
-        status: "idle",
+        status: action.type,
         quotes: undefined,
         error: undefined,
       };
