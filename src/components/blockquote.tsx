@@ -1,13 +1,13 @@
 import Balancer from "react-wrap-balancer";
 
-interface Blockquote {
+interface BlockquoteProps {
   quote: string;
   author: string;
 }
-export function Blockquote({ quote, author }: Blockquote) {
+export function Blockquote({ quote, author }: BlockquoteProps) {
   return (
     <figure className="max-w-screen-md mx-auto text-center">
-      <blockquote className="not-prose border-none">
+      <blockquote className="not-prose border-none font-serif">
         <p className="text-2xl italic prose-md">
           <Balancer>{quote}</Balancer>
         </p>

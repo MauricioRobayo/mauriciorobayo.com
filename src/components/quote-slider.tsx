@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Quote, useQuotes } from "@/hooks/use-quote";
 import { Loader } from "@/components/loader";
 import { RefreshIcon } from "@/components/refresh-icon";
-import { Blockquote } from "./blockquote";
+import { Blockquote } from "@/components/blockquote";
 
 const defaultQuote: Quote = {
   quote:
@@ -10,7 +10,7 @@ const defaultQuote: Quote = {
   author: "Robert Greene",
 };
 
-export function Quote() {
+export function QuoteSlider() {
   const { status, quotes } = useQuotes();
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
 
