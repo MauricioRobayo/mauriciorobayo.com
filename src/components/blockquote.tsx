@@ -12,7 +12,7 @@ export function Blockquote({ quote, author }: BlockquoteProps) {
       </blockquote>
       {author ? (
         <figcaption className="mt-6">
-          <cite className="pr-3 not-italic font-medium text-gray-900 dark:text-white">
+          <cite className="not-italic font-medium text-gray-900 dark:text-white">
             {author}
           </cite>
         </figcaption>
