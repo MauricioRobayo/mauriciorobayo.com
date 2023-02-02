@@ -67,7 +67,9 @@ export default function Layout({
                 date={new Date(pageOpts.frontMatter.date)}
               />
             )}
-            {isHome ? null : <h1 className="mt-1 mb-12">{pageOpts.title}</h1>}
+            {isHome ? null : (
+              <h1 className="hidden sm:block mt-1 mb-12ß">{pageOpts.title}</h1>
+            )}
             {type === "posts" ? (
               postsList
             ) : (
@@ -77,11 +79,11 @@ export default function Layout({
           {isHome ? null : <hr />}
           <Footer links={themeConfig.footerLinks}>
             {isHome ? null : (
-              <small>
-                <p>
+              <p className="pb-8">
+                <small>
                   <Balancer>{themeConfig.tagLine}</Balancer>
-                </p>
-              </small>
+                </small>
+              </p>
             )}
           </Footer>
         </main>
