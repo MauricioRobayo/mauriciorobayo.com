@@ -32,9 +32,6 @@ export function QuoteSlider() {
   }
 
   const refreshQuote = () => {
-    if (!quotes) {
-      return;
-    }
     setCurrentQuoteIndex(
       (currentQuoteIndex) => (currentQuoteIndex + 1) % quotes.length
     );
