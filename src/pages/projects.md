@@ -3,6 +3,8 @@ type: page
 title: Projects
 ---
 
+I have tons of personal projects; this is a hand-picked list of the ones that have turned out, in my opinion, less crappy.
+
 ## Active
 
 - **[Nextjs Google Analytics](https://github.com/mauriciorobayo/nextjs-google-analytics)**: Google Analytics for Nextjs.
