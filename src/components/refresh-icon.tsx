@@ -1,4 +1,7 @@
-export function RefreshIcon() {
+interface RefreshIconProps {
+  className?: string;
+}
+export function RefreshIcon({ className = "" }: RefreshIconProps) {
   return (
     <svg
       fill="#000000"
@@ -8,7 +11,7 @@ export function RefreshIcon() {
       id="Capa_1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 489.645 489.645"
-      className="fill-current"
+      className={`${className} fill-current`}
     >
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g

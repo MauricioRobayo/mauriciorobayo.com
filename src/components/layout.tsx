@@ -28,8 +28,7 @@ export default function Layout({
       {posts.map((post) => {
         const dateString: string | undefined = post.frontMatter?.date;
         if (!dateString) {
-          return null;
-          // throw new Error(`Post ${post.name} is missing the date field.`);
+          throw new Error(`Post ${post.name} is missing the date field.`);
         }
         return (
           <li

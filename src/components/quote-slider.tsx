@@ -16,7 +16,7 @@ export function QuoteSlider() {
 
   if (status === "idle" || status === "loading") {
     return (
-      <div className="text-center py-8 m-auto grid place-items-center">
+      <div className="sm:text-center py-4 sm:py-8 m-auto grid place-items-center">
         <Loader />
       </div>
     );
@@ -24,7 +24,7 @@ export function QuoteSlider() {
 
   if (status === "error") {
     return (
-      <div className="text-center py-8 m-auto grid place-items-center">
+      <div className="sm:text-center py-4 sm:py-8 m-auto grid place-items-center">
         <Blockquote quote={defaultQuote.quote} author={defaultQuote.author} />
       </div>
     );
@@ -40,13 +40,34 @@ export function QuoteSlider() {
   };
 
   return (
-    <div className="text-center py-8 m-auto grid place-items-center">
+    <div className="sm:text-center py-2 sm:py-8 m-auto grid sm:place-items-center">
       <Blockquote
         quote={quotes[currentQuoteIndex].quote}
         author={quotes[currentQuoteIndex].author}
       />
-      <button type="button" onClick={refreshQuote}>
-        <RefreshIcon />
+      <button
+        className="justify-self-start sm:justify-self-center"
+        type="button"
+        onClick={refreshQuote}
+      >
+        <RefreshIcon className="hidden sm:block" />
+        <div className="text-4xl sm:hidden bg-gray-200 dark:bg-slate-700 w-12 h-12 rounded-full grid place-items-center">
+          <svg
+            width="1rem"
+            height="1rem"
+            version="1.1"
+            id="XMLID_287_"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 24"
+            className="fill-current bg-opacity-20"
+          >
+            <g id="next">
+              <g>
+                <polygon points="6.8,23.7 5.4,22.3 15.7,12 5.4,1.7 6.8,0.3 18.5,12 		" />
+              </g>
+            </g>
+          </svg>
+        </div>
       </button>
     </div>
   );
