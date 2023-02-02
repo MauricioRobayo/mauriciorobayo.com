@@ -15,7 +15,19 @@ export function Quote() {
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
 
   if (status === "idle" || status === "loading") {
-    return <Loader />;
+    return (
+      <div className="text-center py-8 m-auto grid place-items-center">
+        <Loader />
+      </div>
+    );
+  }
+
+  if (status === "error") {
+    return (
+      <div className="text-center py-8 m-auto grid place-items-center">
+        <Blockquote quote={defaultQuote.quote} author={defaultQuote.author} />
+      </div>
+    );
   }
 
   const refreshQuote = () => {
@@ -29,19 +41,13 @@ export function Quote() {
 
   return (
     <div className="text-center py-8 m-auto grid place-items-center">
-      {status === "error" ? (
-        <Blockquote quote={defaultQuote.quote} author={defaultQuote.author} />
-      ) : (
-        <>
-          <Blockquote
-            quote={quotes[currentQuoteIndex].quote}
-            author={quotes[currentQuoteIndex].author}
-          />
-          <button type="button" onClick={refreshQuote}>
-            <RefreshIcon />
-          </button>
-        </>
-      )}
+      <Blockquote
+        quote={quotes[currentQuoteIndex].quote}
+        author={quotes[currentQuoteIndex].author}
+      />
+      <button type="button" onClick={refreshQuote}>
+        <RefreshIcon />
+      </button>
     </div>
   );
 }
