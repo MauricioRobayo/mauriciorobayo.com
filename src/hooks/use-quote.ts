@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 
 const quotesFileUrl =
   "https://raw.githubusercontent.com/MauricioRobayo/quotes-to-live-by/main/quotes-to-live-by.json";
@@ -28,62 +28,71 @@ interface QuoteLoadingResponse {
   error: undefined;
   quotes: undefined;
 }
-export function useQuotes():
+type State =
   | QuoteSuccessResponse
   | QuoteErrorResponse
   | QuoteIdleResponse
-  | QuoteLoadingResponse {
-  const [quotes, setQuotes] = useState<Quote[]>();
-  const [status, setStatus] = useState<QuoteStatus>("idle");
-  const [error, setError] = useState<number>();
+  | QuoteLoadingResponse;
+
+const initialState: State = {
+  status: "idle",
+  quotes: undefined,
+  error: undefined,
+};
+type Action =
+  | {
+      type: "loading";
+    }
+  | { type: "idle" }
+  | { type: "error"; payload: number }
+  | {
+      type: "success";
+      payload: Quote[];
+    };
+const reducer = (prevState: State, action: Action): State => {
+  switch (action.type) {
+    case "error":
+      return {
+        status: "error",
+        quotes: undefined,
+        error: action.payload,
+      };
+    case "success":
+      return {
+        status: "success",
+        quotes: action.payload,
+        error: undefined,
+      };
+    case "idle":
+      return {
+        status: "idle",
+        quotes: undefined,
+        error: undefined,
+      };
+    default:
+      return prevState;
+  }
+};
+export function useQuotes(): State {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     async function fetchQuotes() {
-      setStatus("loading");
+      dispatch({ type: "loading" });
       const response = await fetch(quotesFileUrl);
       if (!response.ok) {
-        setStatus("error");
-        setError(response.status);
+        dispatch({ type: "error", payload: response.status });
         return;
       }
 
       const data = await response.json();
-      setStatus("success");
-      setQuotes(shuffleArray(data.quotes));
+      dispatch({ type: "success", payload: shuffleArray(data.quotes) });
     }
 
     fetchQuotes();
   }, []);
 
-  if (error) {
-    return {
-      error,
-      status: "error",
-      quotes: undefined,
-    };
-  }
-
-  if (quotes) {
-    return {
-      quotes,
-      status: "success",
-      error: undefined,
-    };
-  }
-
-  if (status === "idle") {
-    return {
-      status: "idle",
-      quotes: undefined,
-      error: undefined,
-    };
-  }
-
-  return {
-    status: "loading",
-    quotes: undefined,
-    error: undefined,
-  };
+  return state;
 }
 
 function shuffleArray<T>(arr: T[]): T[] {
