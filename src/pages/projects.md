@@ -28,3 +28,4 @@ I have tons of personal projects; this is a hand-picked list of the ones that ha
 - **[Twitterize](https://github.com/MauricioRobayo/twitterize)**: Generate OAuth 1.0a authorization header for Twitter API using native https nodejs module
 - **[Tasa Representativa del Mercado](https://mauriciorobayo.github.io/tasa-representativa-del-mercado/)**: Colombian peso official exchange rate.
 - **[gogofast](https://github.com/MauricioRobayo/gogofast)**: Code snippets touch typing practice on the CLI.
+- **[Best TED Talks](https://best-ted-talks.web.app/)**: Find something inspirational to watch.
