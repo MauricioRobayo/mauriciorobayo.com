@@ -16,7 +16,6 @@ export function QuoteSlider() {
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
   const refreshQuote = () => {
     if (quotes) {
-      console.log("is this going on", currentQuoteIndex);
       setCurrentQuoteIndex(
         (currentQuoteIndex) => (currentQuoteIndex + 1) % quotes.length
       );
