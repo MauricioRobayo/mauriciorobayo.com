@@ -9,4 +9,4 @@ By 2012 I began tinkering around with HTML, CSS, and JavaScript. I bought more b
 
 Then I learned WordPress and PHP and built websites for everyone around me as a side gig. I wrote custom templates and silly plugins. Built some toy projects using CodeIgniter, just for fun, did online CS courses, learned Python, and played around with Ruby and Ruby on Rails.
 
-In 2019 I was able to take a year off to fully commit to learning in-depth web development and focused on mastering JavaScript. I plunged deep into TypeScript, React, and Nodejs, and have skyrocketed as a professional web developer.
+In 2019 I was able to take a year off to fully commit to learning in-depth web development and focused on mastering JavaScript. I plunged deep into TypeScript, React, and Nodejs, and have skyrocketed as a professional web developer ever since.
