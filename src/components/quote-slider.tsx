@@ -14,6 +14,14 @@ const defaultQuote: Quote = {
 export function QuoteSlider() {
   const { status, quotes } = useQuotes();
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+  const refreshQuote = () => {
+    if (quotes) {
+      console.log("is this going on", currentQuoteIndex);
+      setCurrentQuoteIndex(
+        (currentQuoteIndex) => (currentQuoteIndex + 1) % quotes.length
+      );
+    }
+  };
 
   if (status === "idle" || status === "loading") {
     return (
@@ -30,12 +38,6 @@ export function QuoteSlider() {
       </div>
     );
   }
-
-  const refreshQuote = () => {
-    setCurrentQuoteIndex(
-      (currentQuoteIndex) => (currentQuoteIndex + 1) % quotes.length
-    );
-  };
 
   return (
     <div className="sm:text-center py-2 sm:py-8 m-auto grid sm:place-items-center">
