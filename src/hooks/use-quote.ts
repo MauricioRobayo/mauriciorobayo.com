@@ -2,12 +2,11 @@ import { useEffect, useReducer } from "react";
 
 const quotesFileUrl =
   "https://raw.githubusercontent.com/MauricioRobayo/quotes-to-live-by/main/quotes-to-live-by.json";
-
+const fetchQuotes = fetchCache();
 export interface Quote {
   quote: string;
   author: string;
 }
-type QuoteStatus = "loading" | "idle" | "success" | "error";
 interface QuoteSuccessResponse {
   status: "success";
   quotes: Quote[];
@@ -80,21 +79,17 @@ export function useQuotes(): State {
   useEffect(() => {
     const abortController = new AbortController();
 
-    async function fetchQuotes() {
+    async function getQuotes() {
       dispatch({ type: "loading" });
-      const response = await fetch(quotesFileUrl, {
-        signal: abortController.signal,
-      });
-      if (!response.ok) {
-        dispatch({ type: "error", payload: response.status });
-        return;
+      try {
+        const data = await fetchQuotes(quotesFileUrl);
+        dispatch({ type: "success", payload: shuffleArray(data.quotes) });
+      } catch (err) {
+        dispatch({ type: "error", payload: 1 });
       }
-
-      const data = await response.json();
-      dispatch({ type: "success", payload: shuffleArray(data.quotes) });
     }
 
-    fetchQuotes();
+    getQuotes();
 
     return () => {
       abortController.abort();
@@ -111,4 +106,17 @@ function shuffleArray<T>(arr: T[]): T[] {
     [arrCopy[i], arrCopy[j]] = [arrCopy[j], arrCopy[i]];
   }
   return arrCopy;
+}
+
+function fetchCache() {
+  const cache: Record<string, Promise<any>> = {};
+
+  return async (url: string, options?: RequestInit) => {
+    return (cache[url] ??= fetch(url, options).then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error(response.statusText);
+    }));
+  };
 }
