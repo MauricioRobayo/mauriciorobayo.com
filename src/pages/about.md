@@ -3,7 +3,7 @@ type: page
 title: About
 ---
 
-Around 2008 I discovered programming while working with Microsoft Excel. I wrote my first lines of code using VBA and that was it, I was hooked. I bought books, watched videos, jumped into Microsoft Access and became fascinated by databases. By 2012 I began tinkering around with HTML, CSS, and JavaScript. I bought more books, watched more videos, and spent my evenings and weekends messing around with everything related to computers.
+Around 2008 I discovered programming while working with Microsoft Excel. I wrote my first lines of code using VBA and that was it, I was hooked. I bought books, watched videos, jumped into Microsoft Access and became fascinated by databases. By 2012 I began tinkering around with HTML, CSS, and JavaScript. I bought more books, watched more videos, and spent my evenings and weekends playing around with everything software related I could find.
 
 Then I learned WordPress and PHP and built websites for everyone around me as a side gig. I wrote custom templates and silly plugins. Built some toy projects using CodeIgniter, just for fun, did online CS courses, learned Python, and played around with Ruby and Ruby on Rails.
 
