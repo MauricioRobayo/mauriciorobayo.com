@@ -3,7 +3,7 @@ type: page
 title: Projects
 ---
 
-I have tons of personal projects; this is a hand-picked list of the ones that have turned out, in my opinion, less crappy.
+This is a hand-picked list of the projects that have turned out to be, in my opinion, not-that-bad.
 
 ## Active
 
