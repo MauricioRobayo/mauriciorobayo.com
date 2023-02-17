@@ -15,7 +15,7 @@ This is a hand-picked list of **side projects** that have turned out to be, in m
 
 - **[React Obfuscate Email](https://mauriciorobayo.github.io/react-obfuscate-email/)**: React component to obfuscate email links.
 - **[SVG Emojis](https://github.com/MauricioRobayo/svg-emojis)**: Choose your flavor of consistent cross-platform SVG emojis.
-- **[JCQuotes](https://www.jcquotes.com)**: An ever growing list of quotes taken from James Clear's [3-2-1](https://jamesclear.com/3-2-1) newsletter.
+- **[JCQuotes](https://www.jcquotes.com)**: An ever growing list of quotes taken from James Clear's [3-2-1 Newsletter](https://jamesclear.com/3-2-1).
 - **[Colombian Holidays](https://mauriciorobayo.github.io/colombian-holidays/)**: Lightweight module to get Colombian holidays for any given year.
 - **[trm-api](https://mauriciorobayo.github.io/trm-api/)**: Wrapper to simplify GET requests and JSON response parsing from the Tasa Representativa del Mercado API.
 - **[Pascua](https://github.com/MauricioRobayo/pascua)**: Calculate Easter date for any given year.
