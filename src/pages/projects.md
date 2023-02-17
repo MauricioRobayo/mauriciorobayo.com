@@ -3,7 +3,7 @@ type: page
 title: Projects
 ---
 
-This is a hand-picked list of the projects that have turned out to be, in my opinion, not-that-bad.
+This is a hand-picked list of some **side projects** that have turned out to be, in my opinion, not-that-bad.
 
 ## Active
 
