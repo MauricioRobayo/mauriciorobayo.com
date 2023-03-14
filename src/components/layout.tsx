@@ -57,9 +57,11 @@ export default function Layout({
       <div className="bg-gray-50 dark:bg-slate-800 min-h-screen">
         <main className="prose prose-slate dark:prose-invert px-6 m-auto">
           <article className="pt-12">
-            <Header navPages={navPages}>
+            <Header navPages={navPages} className="m-16">
               <Link href="/" className="no-underline">
-                <h2 className="prose-lg my-0 text-gray-400">Mauricio Robayo</h2>
+                <h2 className="prose-lg my-0 text-gray-400 mb-2 sm:mb-0">
+                  Mauricio Robayo
+                </h2>
               </Link>
             </Header>
             {isPost && pageOpts.frontMatter?.date && (

@@ -39,18 +39,17 @@ export function QuoteSlider() {
   }
 
   return (
-    <div className="sm:text-center py-2 sm:py-8 m-auto grid sm:place-items-center">
+    <div className="text-center py-2 sm:py-8 m-auto grid place-items-center">
       <Blockquote
         quote={quotes[currentQuoteIndex].quote}
         author={quotes[currentQuoteIndex].author}
       />
       <button
-        className="justify-self-start sm:justify-self-center"
+        className="justify-self-center"
         type="button"
         onClick={refreshQuote}
       >
-        <RefreshIcon className="hidden sm:block" />
-        <NextIcon className="sm:hidden" />
+        <RefreshIcon />
       </button>
     </div>
   );

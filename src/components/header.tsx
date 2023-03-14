@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 export interface NavPage {
   title: string;
@@ -9,11 +10,12 @@ export interface NavPage {
 interface HeaderProps {
   navPages: NavPage[];
   children: ReactNode;
+  className?: string;
 }
-export function Header({ navPages, children }: HeaderProps) {
+export function Header({ navPages, children, className }: HeaderProps) {
   return (
-    <header className="mb-8">
-      <div className="flex justify-between flex-col sm:flex-row items-baseline">
+    <header className={twMerge("mb-8", className)}>
+      <div className="flex justify-between items-center flex-col sm:flex-row sm:items-baseline">
         {children}
         <nav>
           <ul className="flex gap-4 list-none p-0 m-0 text-gray-400">
