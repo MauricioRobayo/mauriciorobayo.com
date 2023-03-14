@@ -10,6 +10,7 @@ This is a hand-picked list of **side projects** that have turned out to be, in m
 - **[Nextjs Google Analytics](https://github.com/mauriciorobayo/nextjs-google-analytics)**: Google Analytics for Nextjs.
 - **[Pyphoy](https://www.pyphoy.com)**: Top reference site for vehicle restriction in Colombia, with over a million users per month.
 - **[CodeTyper](https://codetyper.io)**: Practice touch typing with your favorite code snippets.
+- **[Is Colombian Holiday?](https://iscolombian.holiday)**: Public holidays in Colombia.
 
 ## Stale
 
