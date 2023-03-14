@@ -3,7 +3,6 @@ import { Quote, useQuotes } from "@/hooks/use-quote";
 import { Loader } from "@/components/loader";
 import { RefreshIcon } from "@/components/refresh-icon";
 import { Blockquote } from "@/components/blockquote";
-import { NextIcon } from "./next-icon";
 
 const defaultQuote: Quote = {
   quote:
