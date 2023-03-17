@@ -13,6 +13,7 @@ import { Footer } from "@/components/footer";
 import { Header, NavPage } from "@/components/header";
 import { Head } from "@/components/head";
 import Balancer from "react-wrap-balancer";
+import { useMemo } from "react";
 
 export default function Layout({
   pageOpts,
@@ -24,6 +25,19 @@ export default function Layout({
   const type = pageOpts.frontMatter?.type ?? "post";
   const isPost = type === "post";
   const isHome = pageOpts.route === "/";
+  const postsNav = useMemo(() => {
+    const currentPostIndex = posts.findIndex((post) =>
+      isPost ? post.route === pageOpts.route : false
+    );
+    if (currentPostIndex === -1) {
+      return null;
+    }
+    return {
+      next:
+        currentPostIndex >= posts.length ? null : posts[currentPostIndex + 1],
+      prev: currentPostIndex <= 0 ? null : posts[currentPostIndex - 1],
+    };
+  }, [isPost, pageOpts.route, posts]);
   const postsList = (
     <ol className="list-none pl-0 flex flex-col gap-2">
       {posts.map((post) => {
@@ -78,7 +92,33 @@ export default function Layout({
             {type === "posts" ? (
               postsList
             ) : (
-              <div className={isHome ? "my-32" : ""}>{children}</div>
+              <div className={isHome ? "my-32" : ""}>
+                {children}
+                {postsNav && (
+                  <div
+                    className={`flex text-sm ${
+                      postsNav.prev ? "justify-between" : "justify-end"
+                    } mt-16`}
+                  >
+                    {postsNav.prev && (
+                      <Link
+                        href={postsNav.prev.route}
+                        className="no-underline text-slate-400"
+                      >
+                        &larr; prev
+                      </Link>
+                    )}
+                    {postsNav.next && (
+                      <Link
+                        href={postsNav.next.route}
+                        className="no-underline text-slate-400"
+                      >
+                        next &rarr;
+                      </Link>
+                    )}
+                  </div>
+                )}
+              </div>
             )}
           </article>
           {isHome ? null : <hr />}

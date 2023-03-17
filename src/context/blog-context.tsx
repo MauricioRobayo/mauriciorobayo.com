@@ -1,7 +1,7 @@
 import { PageOpts } from "nextra";
 import { createContext, ReactNode, useContext } from "react";
 
-interface Link {
+export interface LinkItem {
   url: string;
   name: string;
 }
@@ -9,7 +9,7 @@ interface Link {
 export interface ThemeConfig {
   siteName: string;
   tagLine: string;
-  footerLinks: Link[];
+  footerLinks: LinkItem[];
 }
 
 interface BlogContextValue {
