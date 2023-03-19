@@ -11,10 +11,10 @@ This is a hand-picked list of **side projects** that have turned out to be, in m
 - **[Pyphoy](https://www.pyphoy.com)**: Top reference site for vehicle restriction in Colombia, with over a million users per month.
 - **[CodeTyper](https://codetyper.io)**: Practice touch typing with your favorite code snippets.
 - **[Is Colombian Holiday?](https://iscolombian.holiday)**: Public holidays in Colombia.
+- **[JCQuotes](https://www.jcquotes.com)**: Ever growing list of quotes from James Clear's [3-2-1 Newsletter](https://jamesclear.com/3-2-1).
 
 ## Stale
 
-- **[JCQuotes](https://www.jcquotes.com)**: Ever growing list of quotes from James Clear's [3-2-1 Newsletter](https://jamesclear.com/3-2-1).
 - **[React Obfuscate Email](https://mauriciorobayo.github.io/react-obfuscate-email/)**: React component to obfuscate email links.
 - **[SVG Emojis](https://github.com/MauricioRobayo/svg-emojis)**: Choose your flavor of consistent cross-platform SVG emojis.
 - **[Colombian Holidays](https://mauriciorobayo.github.io/colombian-holidays/)**: Lightweight module to get Colombian holidays for any given year.
