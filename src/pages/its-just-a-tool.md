@@ -1,5 +1,5 @@
 ---
-title: It's jus a tool
+title: It's just a tool
 date: 2023-05-28
 ---
 
