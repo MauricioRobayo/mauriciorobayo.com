@@ -1,0 +1,79 @@
+---
+title: SSR Responsive Optimization
+date: 2024-01-19
+---
+
+I like to have two different components one for mobile and one for desktop, not always necessary but I have found out that often it makes each single component more readable and easy to maintain.
+
+It usually looks something like this:
+
+```tsx
+<MobileComponent className="block sm:hidden" />
+<DesktopComponent className="hidden sm:block" />
+```
+
+I think that approach works better for Nextjs as it preserves SSR, instead of something like this:
+
+```tsx
+const viewport = useViewport()
+
+if (viewport === null) {
+  return <div>Loading...</div>
+}
+
+return viewport === "mobile" ? <MobileComponent /> : <DesktopComponent />
+```
+
+We could default to rendering either the Mobile or the Desktop for SSR, and then swap when the page loads. But, most likely, that will generate hydration errors.
+
+The issue with the first approach is that both component are still rendered and added to the DOM, although one is going to be hidden. That could potentially lead to performance issues.
+
+We can merge both techniques so we render both component at server side and at the initial render, and once we know the viewport we remove the hidden one:
+
+```tsx
+import { useEffect, useState } from "react";
+
+const mobileBreakpoint = 750;
+
+type Viewport = "mobile" | "desktop" | "ssr";
+export function useViewport() {
+  const [viewport, setViewport] = useState<Viewport>("ssr");
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < mobileBreakpoint) {
+        setViewport("mobile");
+      } else {
+        setViewport("desktop");
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return viewport;
+}
+```
+
+And then the magic:
+
+```tsx
+const viewport = useViewport();
+
+const shouldRenderMobile = ["ssr", "mobile"].includes(viewport);
+const shouldRenderDesktop = ["ssr", "desktop"].includes(viewport);
+
+return (
+  <>
+    {shouldRenderMobile && <MobileComponent className="block sm:hidden" />}
+    {shouldRenderDesktop && <DesktopComponent className="hidden sm:block" />}
+  </>
+)
+```
+
+This will render both threes on the server and on the client's initial render, but then will remove the one that does not match the viewport. If `DesktopComonent` and `MobileComponent` are light components, this optimization might not be necessary at all and maybe even just introduce overhead and unecessary complexity.
+
+
+
+
