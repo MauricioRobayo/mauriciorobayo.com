@@ -28,7 +28,7 @@ We could default to rendering either the Mobile or the Desktop for SSR, and then
 
 The issue with the first approach is that both components are still rendered and added to the DOM, although one is going to be hidden. That could potentially lead to performance issues.
 
-We can merge both techniques so we render both component at server side and at the initial render, and once we know the viewport we remove the hidden one:
+We can merge both techniques so we render both components at server side and at the initial render, and once we know the viewport we remove the hidden one:
 
 ```tsx
 import { useEffect, useState } from "react";
