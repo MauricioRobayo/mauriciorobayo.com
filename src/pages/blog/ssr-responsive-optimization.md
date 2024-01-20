@@ -12,7 +12,7 @@ It usually looks something like this:
 <DesktopComponent className="hidden sm:block" />
 ```
 
-I think that approach works better for Nextjs as it preserves SSR, instead of something like this:
+I think that approach works better for Nextjs as it preserves SSR, instead of something like this which will move the rendering of the components to the client side:
 
 ```tsx
 const viewport = useViewport()
@@ -26,7 +26,7 @@ return viewport === "mobile" ? <MobileComponent /> : <DesktopComponent />
 
 We could default to rendering either the Mobile or the Desktop for SSR, and then swap when the page loads. But, most likely, that will generate hydration errors.
 
-The issue with the first approach is that both component are still rendered and added to the DOM, although one is going to be hidden. That could potentially lead to performance issues.
+The issue with the first approach is that both components are still rendered and added to the DOM, although one is going to be hidden. That could potentially lead to performance issues.
 
 We can merge both techniques so we render both component at server side and at the initial render, and once we know the viewport we remove the hidden one:
 
@@ -72,7 +72,7 @@ return (
 )
 ```
 
-This will render both threes on the server and on the client's initial render, but then will remove the one that does not match the viewport. If `DesktopComonent` and `MobileComponent` are light components, this optimization might not be necessary at all and maybe even just introduce overhead and unecessary complexity.
+This will render both components on the server and on the client's initial render, but then will remove the one that does not match the viewport. If `DesktopComonent` and `MobileComponent` are light components, this optimization might not be necessary at all and maybe even just introduce overhead and complexity.
 
 
 
