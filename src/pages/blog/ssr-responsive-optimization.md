@@ -24,7 +24,7 @@ if (viewport === null) {
 return viewport === "mobile" ? <MobileComponent /> : <DesktopComponent />
 ```
 
-We could default to rendering either the Mobile or the Desktop for SSR, and then swap when the page loads. But, most likely, that will generate hydration errors.
+We could default to rendering either `MobileComponent` or `DesktopComponent` on the server, and then swap when the page loads. But, most likely, that will generate hydration errors.
 
 The issue with the first approach is that both components are still rendered and added to the DOM, although one is going to be hidden. That could potentially lead to performance issues.
 
@@ -72,7 +72,7 @@ return (
 )
 ```
 
-This will render both components on the server and on the client's initial render, but then will remove the one that does not match the viewport. If `DesktopComonent` and `MobileComponent` are light components, this optimization might not be necessary at all and maybe even just introduce overhead and complexity.
+This will render both components on the server and on the client's initial render, but then will remove the one that does not match the viewport. If `DesktopComonent` and `MobileComponent` are light weight components with few logic, this optimization might not be necessary at all and might just be introducing overhead and complexity.
 
 
 
