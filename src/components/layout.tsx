@@ -33,9 +33,9 @@ export default function Layout({
       return null;
     }
     return {
-      next:
+      prev:
         currentPostIndex >= posts.length ? null : posts[currentPostIndex + 1],
-      prev: currentPostIndex <= 0 ? null : posts[currentPostIndex - 1],
+      next: currentPostIndex <= 0 ? null : posts[currentPostIndex - 1],
     };
   }, [isPost, pageOpts.route, posts]);
   const postsList = (
@@ -105,7 +105,7 @@ export default function Layout({
                         href={postsNav.prev.route}
                         className="no-underline text-slate-400"
                       >
-                        &larr; prev
+                        &larr; previous
                       </Link>
                     )}
                     {postsNav.next && (
