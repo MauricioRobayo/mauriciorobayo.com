@@ -2,7 +2,7 @@ import { getNotes } from "app/utils";
 import Link from "next/link";
 
 export function Notes() {
-  let allBlogs = getNotes();
+  const allBlogs = getNotes();
 
   return (
     <div className="flex flex-col gap-4">

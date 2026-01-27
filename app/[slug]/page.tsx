@@ -4,7 +4,7 @@ import { getNotes } from "app/utils";
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  let posts = getNotes();
+  const posts = getNotes();
 
   return posts.map((post) => ({
     slug: post.slug,
@@ -13,12 +13,12 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(props) {
   const params = await props.params;
-  let post = getNotes().find((post) => post.slug === params.slug);
+  const post = getNotes().find((post) => post.slug === params.slug);
   if (!post) {
     return;
   }
 
-  let { title, date } = post.metadata;
+  const { title, date } = post.metadata;
   return {
     title,
     openGraph: {
@@ -36,7 +36,7 @@ export async function generateMetadata(props) {
 
 export default async function Blog(props) {
   const params = await props.params;
-  let post = getNotes().find((post) => post.slug === params.slug);
+  const post = getNotes().find((post) => post.slug === params.slug);
 
   if (!post) {
     notFound();
