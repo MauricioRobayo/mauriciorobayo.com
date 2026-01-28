@@ -44,7 +44,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={twJoin(
-        "text-black bg-white dark:text-white dark:bg-black",
+        "text-neutral-900 bg-neutral-50 dark:text-neutral-100 dark:bg-neutral-900",
         GeistSans.variable,
         GeistMono.variable,
       )}
