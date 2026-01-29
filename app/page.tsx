@@ -1,5 +1,4 @@
 import { ExternalLink } from "lucide-react";
-import Link from "next/link";
 
 export default function Home() {
   return (
@@ -9,8 +8,8 @@ export default function Home() {
           Mauricio Robayo
         </h1>
         <nav className="flex gap-4 justify-center">
-          <Link href="/projects">Projects</Link>
-          <Link href="/notes">Notes</Link>
+          {/* <Link href="/projects">Projects</Link>
+          <Link href="/notes">Notes</Link> */}
           <a
             href="https://www.github.com/mauriciorobayo"
             className="flex gap-1 items-center"
