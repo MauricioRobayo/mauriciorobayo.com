@@ -2,7 +2,7 @@ import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { twJoin } from "tailwind-merge";
 
-export default function Header({
+export default function Heading({
   size = "default",
 }: {
   size?: "large" | "default";

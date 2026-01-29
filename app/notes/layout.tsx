@@ -1,10 +1,10 @@
-import Header from "@/app/components/Heading";
+import Heading from "@/app/components/Heading";
 
 export default function Layout({ children }: LayoutProps<"/notes">) {
   return (
     <div className="mt-6 flex min-h-screen flex-col margin-auto items-center">
       <div className="flex flex-1 flex-col gap-22 margin-auto items-center">
-        <Header />
+        <Heading />
         {children}
       </div>
       <footer className="mt-auto py-16">
