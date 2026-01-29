@@ -1,11 +1,21 @@
-import { GeistMono } from "geist/font/mono";
-import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";
-import Link from "next/link";
+import { Geist, Geist_Mono } from "next/font/google";
 import { twJoin } from "tailwind-merge";
-import { Footer } from "./components/footer";
-import "./global.css";
-import { baseUrl } from "./sitemap";
+import "./globals.css";
+
+const baseUrl = "https://www.mauriciorobayo.com";
+
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist",
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -37,30 +47,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html
       lang="en"
       className={twJoin(
-        "text-neutral-900 bg-neutral-50 dark:text-neutral-100 dark:bg-neutral-900",
-        GeistSans.variable,
-        GeistMono.variable,
+        geist.variable,
+        geistMono.variable,
+        "antialiased font-sans bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400",
       )}
     >
-      <body className="antialiased max-w-xl mx-4 pt-8 lg:mx-auto flex-auto min-w-0 flex flex-col px-2 md:px-0 gap-8 min-h-lvh">
-        <h2>
-          <Link
-            href="/"
-            className="uppercase text-sm dark:text-slate-400 text-slate-600"
-          >
-            Mauricio Robayo
-          </Link>
-        </h2>
-        <main className="flex-1">{children}</main>
-        <Footer />
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

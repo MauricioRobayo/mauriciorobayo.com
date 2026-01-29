@@ -1,17 +1,12 @@
-import { Notes } from "app/components/notes";
+import { ViewTransition } from "react";
 
-export default async function Page() {
+export default function Page() {
   return (
-    <section className="flex flex-col gap-8">
-      <figure className="flex flex-col gap-4">
-        <blockquote className="text-lg font-serif italic">
-          The successful warrior is the average man, with laser-like focus.
-        </blockquote>
-        <figcaption className="text-sm dark:text-slate-400 text-slate-600">
-          - Bruce Lee
-        </figcaption>
-      </figure>
-      <Notes />
-    </section>
+    <ViewTransition>
+      <h2 className="uppercase text-xl sm:text-2xl font-bold tracking-widest">
+        Mauricio Robayo
+      </h2>
+      <div>Notes</div>
+    </ViewTransition>
   );
 }
