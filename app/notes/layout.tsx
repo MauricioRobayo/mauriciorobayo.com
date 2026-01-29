@@ -4,7 +4,7 @@ export default function Layout({ children }: LayoutProps<"/notes">) {
   return (
     <div className="mt-6 flex flex-col gap-14 margin-auto items-center">
       <Header />
-      <div className="prose">{children}</div>
+      {children}
     </div>
   );
 }

@@ -29,7 +29,7 @@ export default function Header({
         )}
       >
         {/* <Link href="/projects">Projects</Link> */}
-        <Link href="/notes/dig-in-deep">Notes</Link>
+        <Link href="/notes">Notes</Link>
         <a
           href="https://www.github.com/mauriciorobayo"
           className="flex gap-1 items-center"
