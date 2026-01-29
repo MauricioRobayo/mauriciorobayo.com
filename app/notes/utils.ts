@@ -6,9 +6,9 @@ export interface Note {
 	title: string;
 }
 
-export function getAllNotes(): Note[] {
-	const notesDirectory = path.join(process.cwd(), "app/notes");
-	const entries = fs.readdirSync(notesDirectory, { withFileTypes: true });
+export async function getAllNotes(notesPath: string): Promise<Note[]> {
+	const notesDirectory = path.join(process.cwd(), notesPath);
+	const entries = await fs.promises.readdir(notesDirectory, { withFileTypes: true });
 
 	const notes: Note[] = [];
 
@@ -17,7 +17,7 @@ export function getAllNotes(): Note[] {
 			const mdxPath = path.join(notesDirectory, entry.name, "page.mdx");
 
 			if (fs.existsSync(mdxPath)) {
-				const content = fs.readFileSync(mdxPath, "utf-8");
+				const content = await fs.promises.readFile(mdxPath, "utf-8");
 				const titleMatch = content.match(/^#\s+(.+)$/m);
 
 				if (titleMatch) {
