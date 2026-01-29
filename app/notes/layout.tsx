@@ -1,4 +1,4 @@
-import Header from "@/app/Components/Heading";
+import Header from "@/app/components/Heading";
 
 export default function Layout({ children }: LayoutProps<"/notes">) {
   return (
