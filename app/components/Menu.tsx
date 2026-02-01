@@ -14,12 +14,14 @@ export function Menu({ size = "default" }: { size: "default" | "large" }) {
       )}
     >
       {pathname === "/projects" ? (
-        <div className="font-bold text-gray-200">Projects</div>
+        <div className="font-bold text-gray-600 dark:text-gray-200">
+          Projects
+        </div>
       ) : (
         <Link href="/projects">Projects</Link>
       )}
       {pathname === "/notes" ? (
-        <div className="font-bold text-gray-200">Notes</div>
+        <div className="font-bold text-gray-600 dark:text-gray-200">Notes</div>
       ) : (
         <Link href="/notes">Notes</Link>
       )}
