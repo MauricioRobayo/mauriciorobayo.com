@@ -1,4 +1,4 @@
-import type { Project } from "@/app/Projects/page";
+import type { Project } from "@/app/projects2/page";
 
 export function ProjectCard({ project }: { project: Project }) {
   const { name, repoUrl, url, description } = project;
