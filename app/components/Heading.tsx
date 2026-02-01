@@ -28,7 +28,7 @@ export default function Heading({
           size === "large" ? "text-md" : "text-sm",
         )}
       >
-        {/* <Link href="/projects">Projects</Link> */}
+        <Link href="/projects">Projects</Link>
         <Link href="/notes">Notes</Link>
         <a
           href="https://www.github.com/mauriciorobayo"
