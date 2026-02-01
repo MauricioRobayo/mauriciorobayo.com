@@ -1,6 +1,6 @@
-import { ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { twJoin } from "tailwind-merge";
+import { Menu } from "@/app/components/Menu";
 
 export default function Heading({
   size = "default",
@@ -22,31 +22,7 @@ export default function Heading({
       >
         <Link href="/">Mauricio Robayo</Link>
       </h1>
-      <nav
-        className={twJoin(
-          "flex gap-4 justify-center",
-          size === "large" ? "text-md" : "text-sm",
-        )}
-      >
-        <Link href="/projects">Projects</Link>
-        <Link href="/notes">Notes</Link>
-        <a
-          href="https://www.github.com/mauriciorobayo"
-          className="flex gap-1 items-center"
-          target="_blank"
-          rel="noopener"
-        >
-          GitHub <ExternalLink size={12} />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/mauriciorobayo"
-          className="flex gap-1 items-center"
-          target="_blank"
-          rel="noopener"
-        >
-          LinkedIn <ExternalLink size={12} />
-        </a>
-      </nav>
+      <Menu size={size} />
     </div>
   );
 }
