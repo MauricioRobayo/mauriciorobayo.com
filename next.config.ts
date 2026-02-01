@@ -5,14 +5,6 @@ const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
   cacheComponents: true,
-  async rewrites() {
-    return [
-      {
-        source: '/projects/codetyper',
-        destination: 'https://codetyper-ashen.vercel.app/',
-      },
-    ];
-  },
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 };
 
