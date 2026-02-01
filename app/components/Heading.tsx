@@ -10,7 +10,7 @@ export default function Heading({
   return (
     <div
       className={twJoin(
-        "flex flex-col align-center",
+        "flex flex-col align-center text-center",
         size === "large" ? "gap-4" : "gap-2",
       )}
     >
