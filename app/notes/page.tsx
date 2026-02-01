@@ -7,7 +7,7 @@ export default async function Page() {
   cacheLife("max");
   const allNotes = await getAllNotes("app/notes/(notes)");
   return (
-    <ul className="flex flex-col gap-4">
+    <ul className="flex flex-col gap-4 text-white">
       {allNotes.map((note) => {
         return (
           <li key={note.slug}>
