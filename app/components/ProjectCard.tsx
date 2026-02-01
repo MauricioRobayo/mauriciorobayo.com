@@ -1,22 +1,31 @@
 import type { Project } from "@/app/projects/page";
 
 export function ProjectCard({ project }: { project: Project }) {
-  const { name, repoUrl, url, description } = project;
+  const { name, repoUrl, url, description, isArchived } = project;
   return (
-    <section className="w-96 m-auto text-center prose dark:prose-invert flex flex-col prose-headings:m-0 prose-p:m-0">
-      <h4>{name}</h4>
+    <section className="m-auto text-center prose dark:prose-invert flex flex-col prose-headings:m-0 prose-p:m-0">
+      <h4 className="flex items-center justify-center gap-2">
+        <span>{name}</span>
+        {isArchived && (
+          <span className="inline-flex items-center rounded-full border border-zinc-300/70 bg-zinc-100 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-zinc-600 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300">
+            Archived
+          </span>
+        )}
+      </h4>
       <div>
         {description && <p className="small text-balance">{description}</p>}
-        {url && (
-          <div>
-            <a href={url}>Live Site</a>
-          </div>
-        )}
-        {repoUrl && (
-          <div>
-            <a href={repoUrl}>Repository</a>
-          </div>
-        )}
+        <div className="flex gap-4 justify-center">
+          {url && (
+            <div>
+              <a href={url}>{isArchived ? "Demo" : "Live Site"}</a>
+            </div>
+          )}
+          {repoUrl && (
+            <div>
+              <a href={repoUrl}>Repository</a>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
