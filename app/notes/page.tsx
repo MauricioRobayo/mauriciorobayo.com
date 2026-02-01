@@ -7,14 +7,19 @@ export default async function Page() {
   cacheLife("max");
   const allNotes = await getAllNotes("app/notes/(notes)");
   return (
-    <ul className="flex flex-col gap-4 text-gray-600 dark:text-gray-200">
-      {allNotes.map((note) => {
-        return (
-          <li key={note.slug}>
-            <Link href={`/notes/${note.slug}`}>{note.title}</Link>
-          </li>
-        );
-      })}
-    </ul>
+    <div>
+      <div className="prose">
+        <h1 className="text-center mb-8">Notes</h1>
+      </div>
+      <ul className="flex flex-col gap-4 text-gray-600 dark:text-gray-200">
+        {allNotes.map((note) => {
+          return (
+            <li key={note.slug}>
+              <Link href={`/notes/${note.slug}`}>{note.title}</Link>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }

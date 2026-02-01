@@ -51,10 +51,15 @@ const projects: Project[] = [
 
 export default async function Page() {
   return (
-    <ul className="flex flex-col gap-8">
-      {projects.map((project) => {
-        return <ProjectCard key={project.name} project={project} />;
-      })}
-    </ul>
+    <div>
+      <div className="prose">
+        <h1 className="text-center mb-8">Projects</h1>
+      </div>
+      <ul className="flex flex-col gap-8">
+        {projects.map((project) => {
+          return <ProjectCard key={project.name} project={project} />;
+        })}
+      </ul>
+    </div>
   );
 }
