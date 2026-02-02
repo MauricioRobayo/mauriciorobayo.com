@@ -52,7 +52,7 @@ const projects: Project[] = [
 export default async function Page() {
   return (
     <div>
-      <div className="prose">
+      <div className="prose dark:prose-invert">
         <h1 className="text-center mb-8">Projects</h1>
       </div>
       <ul className="flex flex-col gap-8">
