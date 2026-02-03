@@ -15,20 +15,20 @@ const projects: Project[] = [
     name: "PYPHOY",
     url: "https://www.pyphoy.com",
     description:
-      "Top reference site for vehicle restrictions in Colombia, with over 2M page views/month, and 800K active users/month.",
+      "Top reference site for vehicle restrictions in Colombia, with over 2M page views/month, and near 800K active users/month.",
   },
   {
     id: "registronnit",
     name: "RegistroNIT",
     url: "https://www.registronit.com",
     description:
-      "Large-scale platform that aggregates and normalizes business information from multiple public data sources, exposing over 9 million public company records in a structured and searchable interface. The system was engineered for high performance, reliability, and SEO discoverability, and continues to grow in traffic and reach.",
+      "Large-scale platform that aggregates and normalizes business information from multiple public data sources, exposing over 9 million public company records in a structured and searchable interface.",
   },
   {
     id: "ciiu",
     name: "CIIU",
     description:
-      "The reference platform for Colombia's CIIU economic activity codes, integrating data from public APIs and search-optimized content. The site has quickly become a top organic result for CIIU related queries.",
+      "Reference platform for Colombia's CIIU economic activity codes, integrating data from public APIs and search-optimized content. Engineered for high performance, reliability, and SEO discoverability.",
     url: "https://www.ciiu.co",
   },
   {
@@ -56,9 +56,9 @@ export default async function Page() {
         <h1 className="text-center mb-8">Projects</h1>
       </div>
       <ul className="flex flex-col gap-8">
-        {projects.map((project) => {
-          return <ProjectCard key={project.name} project={project} />;
-        })}
+        {projects.map((project) => (
+          <ProjectCard key={project.name} project={project} />
+        ))}
       </ul>
     </div>
   );
