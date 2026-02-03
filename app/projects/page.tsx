@@ -65,9 +65,14 @@ export default async function Page() {
       <div className="prose dark:prose-invert">
         <h1 className="text-center mb-8">Projects</h1>
       </div>
-      <ul className="flex flex-col gap-8">
-        {projects.map((project) => (
-          <ProjectCard key={project.name} project={project} />
+      <ul className="flex flex-col">
+        {projects.map((project, index) => (
+          <li key={project.name}>
+            <ProjectCard project={project} />
+            {index < projects.length - 1 ? (
+              <hr className="border-gray-200 w-32 mx-auto my-4" />
+            ) : null}
+          </li>
         ))}
       </ul>
     </div>
