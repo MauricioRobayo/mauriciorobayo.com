@@ -1,5 +1,5 @@
+import type { ReactNode } from "react";
 import { ProjectCard } from "@/app/components/ProjectCard";
-import { ReactNode } from "react";
 
 export interface Project {
   id: string;
@@ -37,7 +37,8 @@ const projects: Project[] = [
     name: "CodeTyper",
     url: "https://codetyper-ashen.vercel.app/",
     repoUrl: "https://github.com/MauricioRobayo/codetyper",
-    description: "Practice touch typing with your favorite code snippets.",
+    description:
+      "Practice touch typing using your own code snippets via GitHub Gists. A lightweight tool for improving coding speed and muscle memory.",
     isArchived: true,
   },
   {

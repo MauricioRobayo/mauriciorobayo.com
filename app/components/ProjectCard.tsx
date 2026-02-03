@@ -3,7 +3,7 @@ import type { Project } from "@/app/projects/page";
 export function ProjectCard({ project }: { project: Project }) {
   const { name, repoUrl, url, description, isArchived } = project;
   return (
-    <section className="m-auto text-center prose dark:prose-invert flex flex-col prose-headings:m-0 prose-p:m-0">
+    <section className="m-auto text-center prose dark:prose-invert prose-headings:m-0 prose-p:m-0 flex flex-col gap-1">
       <h4 className="flex items-center justify-center gap-2">
         <span>{name}</span>
         {isArchived && (
@@ -12,20 +12,18 @@ export function ProjectCard({ project }: { project: Project }) {
           </span>
         )}
       </h4>
-      <div>
-        {description && <p className="small text-balance">{description}</p>}
-        <div className="flex gap-4 justify-center">
-          {url && (
-            <div>
-              <a href={url}>{isArchived ? "Demo" : "Live Site"}</a>
-            </div>
-          )}
-          {repoUrl && (
-            <div>
-              <a href={repoUrl}>Repository</a>
-            </div>
-          )}
-        </div>
+      {description && <p className="small text-balance">{description}</p>}
+      <div className="flex gap-4 justify-center">
+        {url && (
+          <div>
+            <a href={url}>{isArchived ? "Demo" : "Live Site"}</a>
+          </div>
+        )}
+        {repoUrl && (
+          <div>
+            <a href={repoUrl}>Repository</a>
+          </div>
+        )}
       </div>
     </section>
   );
