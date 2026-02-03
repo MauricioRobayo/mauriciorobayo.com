@@ -47,7 +47,7 @@ const projects: Project[] = [
     repoUrl: "https://github.com/MauricioRobayo/nextjs-google-analytics",
     description: (
       <>
-        The go-to Google Analytics package for Next.js for many years, before
+        The go-to Google Analytics library for Next.js for many years, before
         Next.js's built-in{" "}
         <a href="https://nextjs.org/docs/app/guides/third-party-libraries">
           Third Party Libraries
