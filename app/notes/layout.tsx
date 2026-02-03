@@ -7,7 +7,7 @@ export default function Layout({ children }: LayoutProps<"/notes">) {
         <Heading />
         {children}
       </div>
-      <footer className="mt-auto py-8 sm:py-16 text-balance">
+      <footer className="mt-auto pt-12 pb-8 sm:pt-22 sm:pb-16 text-balance">
         <blockquote className="text-lg font-serif italic text-center">
           The successful warrior is the average man, with laser-like focus.
         </blockquote>
