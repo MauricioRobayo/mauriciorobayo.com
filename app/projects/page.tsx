@@ -1,10 +1,11 @@
 import { ProjectCard } from "@/app/components/ProjectCard";
+import { ReactNode } from "react";
 
 export interface Project {
   id: string;
   name: string;
   url?: string;
-  description?: string;
+  description?: ReactNode;
   repoUrl?: string;
   isArchived?: boolean;
 }
@@ -43,8 +44,16 @@ const projects: Project[] = [
     id: "Nextjs GA4",
     name: "Nextjs Google Analytics",
     repoUrl: "https://github.com/MauricioRobayo/nextjs-google-analytics",
-    description:
-      "The go-to Nextjs Google Analytics package for many years, before Nextjs Third Party Libraries package was added.",
+    description: (
+      <>
+        The go-to Google Analytics package for Next.js for many years, before
+        Next.js's built-in{" "}
+        <a href="https://nextjs.org/docs/app/guides/third-party-libraries">
+          Third Party Libraries
+        </a>{" "}
+        support was added.
+      </>
+    ),
     isArchived: true,
   },
 ];
