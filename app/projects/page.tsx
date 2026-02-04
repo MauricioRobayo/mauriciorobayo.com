@@ -70,7 +70,7 @@ export default async function Page() {
           <li key={project.name}>
             <ProjectCard project={project} />
             {index < projects.length - 1 ? (
-              <hr className="border-gray-200 w-32 mx-auto my-4" />
+              <hr className="border-gray-200 dark:border-gray-600 w-32 mx-auto my-4" />
             ) : null}
           </li>
         ))}
