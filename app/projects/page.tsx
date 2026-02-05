@@ -16,7 +16,7 @@ const projects: Project[] = [
     name: "PYPHOY",
     url: "https://www.pyphoy.com",
     description:
-      "Top reference site for vehicle restrictions in Colombia, with over 2M page views/month, and near 800K active users/month.",
+      "Top reference site for vehicle restrictions in Colombia, with over 2M monthly page views and nearly 800K monthly active users.",
   },
   {
     id: "registronnit",
