@@ -1,4 +1,4 @@
-import { execSync } from "node:child_process";
+import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -22,13 +22,18 @@ function extractDateFromFrontMatter(content: string): string | null {
 
 function getGitCommitDate(filePath: string): string {
   try {
-    const date = execSync(
-      `git log --diff-filter=A --format="%aI" -- "${filePath}"`,
+    const result = spawnSync(
+      "git",
+      ["log", "--diff-filter=A", "--format=%aI", "--", filePath],
       { encoding: "utf-8" },
-    )
-      .trim()
-      .split("\n")[0];
-    return date || new Date().toISOString();
+    );
+    if (result.status === 0) {
+      const date = result.stdout.trim().split("\n").filter(Boolean)[0];
+      if (date) {
+        return date;
+      }
+    }
+    return new Date().toISOString();
   } catch (_error) {
     return new Date().toISOString();
   }
