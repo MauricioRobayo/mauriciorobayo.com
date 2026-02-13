@@ -13,9 +13,18 @@ export default async function Page() {
       </div>
       <ul className="flex flex-col gap-4 text-gray-600 dark:text-gray-200">
         {allNotes.map((note) => {
+          const date = new Date(note.date);
+          const formattedDate = date.toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          });
           return (
-            <li key={note.slug}>
+            <li key={note.slug} className="flex justify-between items-center">
               <Link href={`/notes/${note.slug}`}>{note.title}</Link>
+              <span className="text-sm text-gray-400 dark:text-gray-500">
+                {formattedDate}
+              </span>
             </li>
           );
         })}
