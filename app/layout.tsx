@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { twJoin } from "tailwind-merge";
@@ -16,6 +17,8 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   display: "swap",
 });
+
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
@@ -59,7 +62,10 @@ export default function RootLayout({
         "antialiased font-sans bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400",
       )}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
+      </body>
     </html>
   );
 }
