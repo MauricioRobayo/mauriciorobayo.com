@@ -39,7 +39,7 @@ export function Quote({ quotes }: QuoteProps) {
       >
         <RefreshCw
           size={16}
-          className="transition-transform duration-500 ease-in-out"
+          className="transition-transform duration-300 ease-in-out"
           style={{ transform: `rotate(${rotation}deg)` }}
         />
       </button>
