@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "biome check",
-    "format": "biome format --write"
+    "check": "biome check",
+    "check:write": "biome format --write"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
