@@ -31,7 +31,7 @@ export function Quote({ quotes }: QuoteProps) {
       <blockquote
         key={quoteIndex}
         cite={activeQuote.author}
-        className="text-pretty animate-fade-in font-serif italic"
+        className="text-pretty animate-fade-in font-serif font-light italic"
       >
         {activeQuote.quote}
       </blockquote>
