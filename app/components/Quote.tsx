@@ -35,7 +35,7 @@ export function Quote({ quotes }: QuoteProps) {
       >
         {activeQuote.quote}
       </blockquote>
-      <p className="text-sm font-light text-zinc-600 dark:text-zinc-400">
+      <p className="text-sm font-light text-zinc-500 dark:text-zinc-300">
         ~ {activeQuote.author} ~
       </p>
       <button
