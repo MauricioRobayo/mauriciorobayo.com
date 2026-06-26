@@ -20,8 +20,8 @@ export function Quote({ quotes }: QuoteProps) {
       return;
     }
 
-    setQuoteIndex((prev) => prev % shuffledQuotes.length);
-  }, [shuffledQuotes.length]);
+    setQuoteIndex(0);
+  }, [shuffledQuotes]);
 
   const activeQuote = shuffledQuotes[quoteIndex];
   if (!activeQuote) return null;
@@ -29,7 +29,7 @@ export function Quote({ quotes }: QuoteProps) {
   return (
     <div className="flex flex-col gap-4 items-center">
       <blockquote
-        key={`${activeQuote.quote}-${quoteIndex}`}
+        key={quoteIndex}
         cite={activeQuote.author}
         className="text-pretty animate-fade-in font-serif italic"
       >
