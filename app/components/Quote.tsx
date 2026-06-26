@@ -50,14 +50,21 @@ export function Quote({ quotes }: QuoteProps) {
   );
 }
 
-function getRandomQuote(quotes: Quote[], currentQuote?: string) {
-  if (quotes.length <= 1) {
+function getRandomQuote(
+  quotes: Quote[],
+  currentQuoteText?: string,
+): Quote | null {
+  if (quotes.length === 0) {
+    return null;
+  }
+
+  if (quotes.length === 1) {
     return quotes[0];
   }
 
-  const candidateQuotes = quotes.filter(
-    (quote) => quote.quote !== currentQuote,
+  const availableQuotes = quotes.filter(
+    (quote) => quote.quote !== currentQuoteText,
   );
-  const sourceQuotes = candidateQuotes.length > 0 ? candidateQuotes : quotes;
+  const sourceQuotes = availableQuotes.length > 0 ? availableQuotes : quotes;
   return sourceQuotes[Math.floor(Math.random() * sourceQuotes.length)];
 }
