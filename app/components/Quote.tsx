@@ -1,7 +1,7 @@
 "use client";
 
 import { RefreshCw } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 interface Quote {
   author: string;
@@ -11,14 +11,17 @@ interface QuoteProps {
   quotes: Quote[];
 }
 export function Quote({ quotes }: QuoteProps) {
-  const [shuffledQuotes, setShuffledQuotes] = useState<Quote[]>([]);
+  const shuffledQuotes = useMemo(() => shuffleQuotes(quotes), [quotes]);
   const [quoteIndex, setQuoteIndex] = useState(0);
   const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
-    setShuffledQuotes(shuffleQuotes(quotes));
-    setQuoteIndex(0);
-  }, [quotes]);
+    if (shuffledQuotes.length === 0) {
+      return;
+    }
+
+    setQuoteIndex((prev) => prev % shuffledQuotes.length);
+  }, [shuffledQuotes.length]);
 
   const activeQuote = shuffledQuotes[quoteIndex];
   if (!activeQuote) return null;
@@ -58,11 +61,15 @@ export function Quote({ quotes }: QuoteProps) {
 function shuffleQuotes(quotes: Quote[]) {
   const shuffledQuotes = [...quotes];
 
-  for (let index = shuffledQuotes.length - 1; index > 0; index--) {
-    const randomIndex = Math.floor(Math.random() * (index + 1));
-    [shuffledQuotes[index], shuffledQuotes[randomIndex]] = [
+  for (
+    let currentIndex = shuffledQuotes.length - 1;
+    currentIndex > 0;
+    currentIndex--
+  ) {
+    const randomIndex = Math.floor(Math.random() * (currentIndex + 1));
+    [shuffledQuotes[currentIndex], shuffledQuotes[randomIndex]] = [
       shuffledQuotes[randomIndex],
-      shuffledQuotes[index],
+      shuffledQuotes[currentIndex],
     ];
   }
 
