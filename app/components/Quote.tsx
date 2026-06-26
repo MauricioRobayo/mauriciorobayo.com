@@ -12,7 +12,7 @@ interface QuoteProps {
 }
 export function Quote({ quotes }: QuoteProps) {
   const shuffledQuotes = useMemo(() => shuffleQuotes(quotes), [quotes]);
-  const [quoteIndex, setQuoteIndex] = useState(0);
+  const [quoteIndex, setQuoteIndex] = useState<number | null>(null);
   const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
@@ -23,20 +23,19 @@ export function Quote({ quotes }: QuoteProps) {
     setQuoteIndex(0);
   }, [shuffledQuotes]);
 
+  if (quoteIndex === null) return null;
   const activeQuote = shuffledQuotes[quoteIndex];
-  if (!activeQuote) return null;
-
   return (
     <div className="flex flex-col gap-4 items-center">
-      <div key={quoteIndex} className="flex flex-col gap-2 animate-fade-in">
-        <blockquote
-          cite={activeQuote.quote}
-          className="text-pretty font-serif font-light italic"
-        >
+      <div
+        key={quoteIndex}
+        className="text-balance font-serif font-light flex flex-col gap-2 animate-fade-in"
+      >
+        <blockquote cite={activeQuote.quote} className="italic">
           {activeQuote.quote}
         </blockquote>
         {activeQuote.author && (
-          <p className="text-sm font-light text-gray-500 dark:text-gray-400/85 font-serif before:content-['~'] after:inline-block after:scale-x-[-1] before:mr-1 after:content-['~'] after:ml-1">
+          <p className="text-sm text-gray-500 dark:text-gray-400/85 font-serif before:content-['~'] after:inline-block after:scale-x-[-1] before:mr-1 after:content-['~'] after:ml-1">
             {activeQuote.author}
           </p>
         )}
@@ -45,7 +44,7 @@ export function Quote({ quotes }: QuoteProps) {
         type="button"
         onClick={() => {
           if (shuffledQuotes.length > 0) {
-            setQuoteIndex((prev) => (prev + 1) % shuffledQuotes.length);
+            setQuoteIndex((prev) => ((prev ?? 0) + 1) % shuffledQuotes.length);
           }
           setRotation((prev) => prev + 180);
         }}
