@@ -11,21 +11,24 @@ interface QuoteProps {
   quotes: Quote[];
 }
 export function Quote({ quotes }: QuoteProps) {
-  const [activeQuote, setActiveQuote] = useState<Quote | null>(null);
+  const [shuffledQuotes, setShuffledQuotes] = useState<Quote[]>([]);
+  const [quoteIndex, setQuoteIndex] = useState(0);
   const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
-    setActiveQuote(getRandomQuote(quotes));
+    setShuffledQuotes(shuffleQuotes(quotes));
+    setQuoteIndex(0);
   }, [quotes]);
 
+  const activeQuote = shuffledQuotes[quoteIndex];
   if (!activeQuote) return null;
 
   return (
     <div className="flex flex-col gap-4 items-center">
       <blockquote
-        key={activeQuote.quote}
+        key={`${activeQuote.quote}-${quoteIndex}`}
         cite={activeQuote.author}
-        className="text-pretty animate-fade-in italic"
+        className="text-pretty animate-fade-in font-serif italic"
       >
         {activeQuote.quote}
       </blockquote>
@@ -35,7 +38,9 @@ export function Quote({ quotes }: QuoteProps) {
       <button
         type="button"
         onClick={() => {
-          setActiveQuote(getRandomQuote(quotes, activeQuote.quote));
+          if (shuffledQuotes.length > 0) {
+            setQuoteIndex((prev) => (prev + 1) % shuffledQuotes.length);
+          }
           setRotation((prev) => prev + 180);
         }}
         aria-label="Get a new quote"
@@ -50,21 +55,16 @@ export function Quote({ quotes }: QuoteProps) {
   );
 }
 
-function getRandomQuote(
-  quotes: Quote[],
-  currentQuoteText?: string,
-): Quote | null {
-  if (quotes.length === 0) {
-    return null;
+function shuffleQuotes(quotes: Quote[]) {
+  const shuffledQuotes = [...quotes];
+
+  for (let index = shuffledQuotes.length - 1; index > 0; index--) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffledQuotes[index], shuffledQuotes[randomIndex]] = [
+      shuffledQuotes[randomIndex],
+      shuffledQuotes[index],
+    ];
   }
 
-  if (quotes.length === 1) {
-    return quotes[0];
-  }
-
-  const availableQuotes = quotes.filter(
-    (quote) => quote.quote !== currentQuoteText,
-  );
-  const sourceQuotes = availableQuotes.length > 0 ? availableQuotes : quotes;
-  return sourceQuotes[Math.floor(Math.random() * sourceQuotes.length)];
+  return shuffledQuotes;
 }
