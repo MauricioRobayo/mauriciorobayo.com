@@ -28,16 +28,19 @@ export function Quote({ quotes }: QuoteProps) {
 
   return (
     <div className="flex flex-col gap-4 items-center">
-      <blockquote
-        key={quoteIndex}
-        cite={activeQuote.author}
-        className="text-pretty animate-fade-in font-serif font-light italic"
-      >
-        {activeQuote.quote}
-      </blockquote>
-      <p className="text-sm font-light text-zinc-500 dark:text-zinc-300">
-        ~ {activeQuote.author} ~
-      </p>
+      <div key={quoteIndex} className="flex flex-col gap-2 animate-fade-in">
+        <blockquote
+          cite={activeQuote.quote}
+          className="text-pretty font-serif font-light italic"
+        >
+          {activeQuote.quote}
+        </blockquote>
+        {activeQuote.author && (
+          <p className="text-sm font-light text-gray-500 dark:text-gray-400/85 font-serif before:content-['~'] after:inline-block after:scale-x-[-1] before:mr-1 after:content-['~'] after:ml-1">
+            {activeQuote.author}
+          </p>
+        )}
+      </div>
       <button
         type="button"
         onClick={() => {
