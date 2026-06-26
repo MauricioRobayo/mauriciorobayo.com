@@ -15,7 +15,7 @@ export function Quote({ quotes }: QuoteProps) {
   const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
-    setActiveQuote(quotes[Math.floor(Math.random() * quotes.length)]);
+    setActiveQuote(getRandomQuote(quotes));
   }, [quotes]);
 
   if (!activeQuote) return null;
@@ -25,14 +25,17 @@ export function Quote({ quotes }: QuoteProps) {
       <blockquote
         key={activeQuote.quote}
         cite={activeQuote.author}
-        className="text-pretty animate-fade-in"
+        className="text-pretty animate-fade-in italic"
       >
         {activeQuote.quote}
       </blockquote>
+      <p className="text-sm font-light text-zinc-600 dark:text-zinc-400">
+        ~ {activeQuote.author}
+      </p>
       <button
         type="button"
         onClick={() => {
-          setActiveQuote(quotes[Math.floor(Math.random() * quotes.length)]);
+          setActiveQuote(getRandomQuote(quotes, activeQuote.quote));
           setRotation((prev) => prev + 180);
         }}
         aria-label="Get a new quote"
@@ -45,4 +48,16 @@ export function Quote({ quotes }: QuoteProps) {
       </button>
     </div>
   );
+}
+
+function getRandomQuote(quotes: Quote[], currentQuote?: string) {
+  if (quotes.length <= 1) {
+    return quotes[0];
+  }
+
+  const candidateQuotes = quotes.filter(
+    (quote) => quote.quote !== currentQuote,
+  );
+  const sourceQuotes = candidateQuotes.length > 0 ? candidateQuotes : quotes;
+  return sourceQuotes[Math.floor(Math.random() * sourceQuotes.length)];
 }
